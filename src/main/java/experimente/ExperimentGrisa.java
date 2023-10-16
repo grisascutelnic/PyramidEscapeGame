@@ -1,4 +1,4 @@
-package com.game.pyramidescapegame;
+package experimente;
 
 public class ExperimentGrisa {
 //dwg
