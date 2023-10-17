@@ -22,7 +22,7 @@ public class Nivele extends Application {
         stage = primaryStage;
 
         // Pagina 1
-        Circle cercAlbastru = new Circle(100, Color.BLUE); // Creează un cerc albastru
+        Circle cercAlbastru = new Circle(300, Color.BLUE); // Creează un cerc albastru
         Button button1 = new Button("Navighează la Pagina 2");
         button1.setOnAction(e -> afiseazaPagina2());
         StackPane layout1 = new StackPane();
@@ -30,7 +30,7 @@ public class Nivele extends Application {
         pagina1 = new Scene(layout1, 600, 600);
 
         // Pagina 2
-        Rectangle patratGalben = new Rectangle(200, 200, Color.RED); // Creează un patrat galben
+        Rectangle patratGalben = new Rectangle(400, 400, Color.RED); // Creează un patrat galben
         Button button2 = new Button("Navighează la Pagina 1");
         button2.setOnAction(e -> afiseazaPagina1());
         StackPane layout2 = new StackPane();
