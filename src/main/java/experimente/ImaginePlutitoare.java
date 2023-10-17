@@ -17,7 +17,7 @@ public class ImaginePlutitoare extends Application {
     @Override
     public void start(Stage stage) {
         // Imaginea de fundal
-        Image backgroundImage = new Image("background.png");
+        Image backgroundImage = new Image("background6.jpg");
         ImageView backgroundImageView = new ImageView(backgroundImage);
 
         backgroundImageView.setFitWidth(1000);
@@ -53,15 +53,15 @@ public class ImaginePlutitoare extends Application {
 
         // Creați o tranzitie de deplasare
         TranslateTransition transitionForGrisa = new TranslateTransition(Duration.seconds(2), movingImageViewGrisa);
-        transitionForGrisa.setToX(100); // De la -200 la 300 pentru a ajunge la mijloc
+        transitionForGrisa.setToX(-150); // De la -200 la 300 pentru a ajunge la mijloc
         transitionForGrisa.play();
 
         TranslateTransition transitionForDima = new TranslateTransition(Duration.seconds(2), movingImageViewDima);
-        transitionForDima.setToX(200); // De la -200 la 300 pentru a ajunge la mijloc
+        transitionForDima.setToX(-50); // De la -200 la 300 pentru a ajunge la mijloc
         transitionForDima.play();
 
         TranslateTransition transitionForTolea = new TranslateTransition(Duration.seconds(2), movingImageViewTolea);
-        transitionForTolea.setToX(300); // De la -200 la 300 pentru a ajunge la mijloc
+        transitionForTolea.setToX(50); // De la -200 la 300 pentru a ajunge la mijloc
         transitionForTolea.play();
     }
 }
