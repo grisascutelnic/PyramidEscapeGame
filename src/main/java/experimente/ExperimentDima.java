@@ -79,8 +79,8 @@ public class ExperimentDima extends Application {
                         if (game.isValid(row, col, num)) {
                             board[row][col] = num;
                             Button cell = new Button(String.valueOf(num));
-                            cell.setMinSize(40, 40);
-                            cell.setStyle("-fx-font-size: 18;");
+                            cell.setMinSize(60, 60);
+                            cell.setStyle("-fx-background-color: #ffad99;-fx-font-size: 18; -fx-text-fill: #000000;");
                             cell.setDisable(true);
                             grid.add(cell, col, row);
                         } else {
