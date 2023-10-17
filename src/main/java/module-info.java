@@ -4,5 +4,5 @@ module com.game.pyramidescape {
 
     opens com.game.pyramidescape to javafx.fxml;
     exports com.game.pyramidescape;
-    exports experimente; // Permit accesul din modulul com.game.pyramidescapegame
+    exports experimente;
 }
