@@ -16,7 +16,7 @@ public class Nivel1 {
         button1.setOnAction(e -> afiseazaPagina2(stage));
         StackPane layout1 = new StackPane();
         layout1.getChildren().addAll(cercAlbastru, button1);
-        pagina1 = new Scene(layout1, 600, 600);
+        pagina1 = new Scene(layout1, 800, 600);
     }
 
     public Scene getScene() {
