@@ -1,17 +1,10 @@
 package experimente;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class Nivele extends Application {
     private Stage stage;
-    private Scene pagina1, pagina2;
 
     public static void main(String[] args) {
         launch(args);
@@ -21,6 +14,7 @@ public class Nivele extends Application {
     public void start(Stage primaryStage) {
         stage = primaryStage;
 
+<<<<<<< HEAD
         // Pagina 1
         Circle cercAlbastru = new Circle(300, Color.BLUE); // Creează un cerc albastru
         Button button1 = new Button("Navighează la Pagina 2");
@@ -39,15 +33,13 @@ public class Nivele extends Application {
 
         // Afișează pagina inițială
         stage.setScene(pagina1);
+=======
+        Nivel1 pagina1 = new Nivel1(stage);
+        Nivel2 pagina2 = new Nivel2(stage);
+
+        stage.setScene(pagina1.getScene());
+>>>>>>> 10226b0d22abf323c4be308ae77aa17f26de09bd
         stage.setTitle("Navigare între pagini");
         stage.show();
-    }
-
-    private void afiseazaPagina1() {
-        stage.setScene(pagina1);
-    }
-
-    private void afiseazaPagina2() {
-        stage.setScene(pagina2);
     }
 }
