@@ -19,7 +19,7 @@ public class SudokuGame {
         }
     }
 
-    private boolean isValid(int row, int col, int num) {
+    boolean isValid(int row, int col, int num) {
         // Verifică dacă numărul este deja pe rând sau coloană
         for (int i = 0; i < 9; i++) {
             if (board[row][i] == num || board[i][col] == num) {

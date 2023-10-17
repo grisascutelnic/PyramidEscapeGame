@@ -1,14 +1,23 @@
 package experimente;
-//ExperimentDima
+
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextInputDialog;
+import java.util.Optional;
 
 public class ExperimentDima extends Application {
     private SudokuGame game = new SudokuGame();
     private GridPane grid = new GridPane();
+    private ImageView imageView = new ImageView();
 
     public static void main(String[] args) {
         launch(args);
@@ -32,14 +41,73 @@ public class ExperimentDima extends Application {
             }
         }
 
-        Scene scene = new Scene(grid, 1000, 800);
+        // Creează un panou VBox pentru a încadra gridul
+        VBox centerPane = new VBox();
+        centerPane.getChildren().add(grid);
+
+        // Configurează alinierea panoului pentru a-l centra în mod vertical și orizontal
+        centerPane.setAlignment(Pos.CENTER);
+
+        // Plasează panoul centrat în BorderPane
+        BorderPane borderPane = new BorderPane();
+        borderPane.setCenter(centerPane);
+
+        Scene scene = new Scene(borderPane, 1000, 800);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
     private void onCellClick(int row, int col) {
-        // Implementează aici logica pentru completarea celulei sau orice altă interacțiune dorită.
+        int[][] board = game.getBoard();
+
+        if (board[row][col] != 0) {
+            // Celula este deja completată, nu face nimic
+            return;
+        }
+
+        Platform.runLater(() -> {
+            TextInputDialog dialog = new TextInputDialog("");
+            dialog.setTitle("Completează celula");
+            dialog.setHeaderText("Introdu un număr de la 1 la 9:");
+            dialog.setContentText("Număr:");
+
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(numStr -> {
+                try {
+                    int num = Integer.parseInt(numStr);
+                    if (num >= 1 && num <= 9) {
+                        if (game.isValid(row, col, num)) {
+                            board[row][col] = num;
+                            Button cell = new Button(String.valueOf(num));
+                            cell.setMinSize(40, 40);
+                            cell.setStyle("-fx-font-size: 18;");
+                            cell.setDisable(true);
+                            grid.add(cell, col, row);
+                        } else {
+                            // Numărul introdus nu este valid
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setTitle("Eroare");
+                            alert.setHeaderText(null);
+                            alert.setContentText("Numărul introdus nu este valid.");
+                            alert.showAndWait();
+                        }
+                    } else {
+                        // Numărul introdus nu este în intervalul corect
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Eroare");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Introdu un număr de la 1 la 9.");
+                        alert.showAndWait();
+                    }
+                } catch (NumberFormatException e) {
+                    // Nu s-a introdus un număr valid
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Eroare");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Introdu un număr valid.");
+                    alert.showAndWait();
+                }
+            });
+        });
     }
 }
-
-
