@@ -22,12 +22,12 @@ public class Nivele extends Application {
         stage = primaryStage;
 
         // Pagina 1
-        Circle cercAlbastru = new Circle(100, Color.BLUE); // Creează un cerc albastru
-        Button button1 = new Button("Navighează la Pagina 2");
-        button1.setOnAction(e -> afiseazaPagina2());
-        StackPane layout1 = new StackPane();
-        layout1.getChildren().addAll(cercAlbastru, button1);
-        pagina1 = new Scene(layout1, 600, 600);
+//        Circle cercAlbastru = new Circle(100, Color.BLUE); // Creează un cerc albastru
+//        Button button1 = new Button("Navighează la Pagina 2");
+//        button1.setOnAction(e -> afiseazaPagina2());
+//        StackPane layout1 = new StackPane();
+//        layout1.getChildren().addAll(cercAlbastru, button1);
+//        pagina1 = new Scene(layout1, 600, 600);
 
         // Pagina 2
         Rectangle patratGalben = new Rectangle(200, 200, Color.RED); // Creează un patrat galben
