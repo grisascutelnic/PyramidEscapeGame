@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.scene.control.Button;
 
 public class Game extends Application {
     public static void main(String[] args) {
@@ -16,6 +17,9 @@ public class Game extends Application {
 
     @Override
     public void start(Stage stage) {
+
+        //INTERFATA
+
         // Imaginea de fundal
         Image backgroundImage = new Image("background6.jpg");
         ImageView backgroundImageView = new ImageView(backgroundImage);
@@ -23,45 +27,54 @@ public class Game extends Application {
         backgroundImageView.setFitWidth(1000);
         backgroundImageView.setFitHeight(700);
 
-        // Imaginea deplasabilă
+        // Imaginile celor 3 faraoni
         Image movingImageGrisa = new Image("grisa.png");
         ImageView movingImageViewGrisa = new ImageView(movingImageGrisa);
-        movingImageViewGrisa.setTranslateX(-500); // Inițial, imaginea este în afara ecranului la stânga
-        movingImageViewGrisa.setFitWidth(190);
-        movingImageViewGrisa.setFitHeight(250);
+        movingImageViewGrisa.setTranslateX(-600);
+        movingImageViewGrisa.setFitWidth(210);
+        movingImageViewGrisa.setFitHeight(260);
 
         Image movingImageDima = new Image("dima.png");
         ImageView movingImageViewDima = new ImageView(movingImageDima);
-        movingImageViewDima.setTranslateX(-600); // Inițial, imaginea este în afara ecranului la stânga
-        movingImageViewDima.setFitWidth(340);
-        movingImageViewDima.setFitHeight(260);
+        movingImageViewDima.setTranslateY(700);
+        movingImageViewDima.setFitWidth(300);
+        movingImageViewDima.setFitHeight(280);
 
         Image movingImageTolea = new Image("tolea.png");
         ImageView movingImageViewTolea = new ImageView(movingImageTolea);
-        movingImageViewTolea.setTranslateX(-700); // Inițial, imaginea este în afara ecranului la stânga
+        movingImageViewTolea.setTranslateX(600);
         movingImageViewTolea.setFitWidth(100);
         movingImageViewTolea.setFitHeight(250);
 
-        // Grup pentru a le afișa pe ambele
         StackPane root = new StackPane();
         root.getChildren().addAll(backgroundImageView, movingImageViewGrisa, movingImageViewDima, movingImageViewTolea);
 
         Scene scene = new Scene(root, 1000, 700);
         stage.setScene(scene);
-        stage.setTitle("Animație de deplasare");
+        stage.setTitle("Pyramid Escape Game");
         stage.show();
 
-        // Creați o tranzitie de deplasare
+        // Tranzitia de deplasare a faraonilor
         TranslateTransition transitionForGrisa = new TranslateTransition(Duration.seconds(2), movingImageViewGrisa);
-        transitionForGrisa.setToX(-150); // De la -200 la 300 pentru a ajunge la mijloc
+        transitionForGrisa.setToX(-150);
+        transitionForGrisa.setToY(120);
         transitionForGrisa.play();
 
         TranslateTransition transitionForDima = new TranslateTransition(Duration.seconds(2), movingImageViewDima);
-        transitionForDima.setToX(-50); // De la -200 la 300 pentru a ajunge la mijloc
+        transitionForDima.setToY(-10);
+        transitionForDima.setToY(120);
         transitionForDima.play();
 
         TranslateTransition transitionForTolea = new TranslateTransition(Duration.seconds(2), movingImageViewTolea);
-        transitionForTolea.setToX(50); // De la -200 la 300 pentru a ajunge la mijloc
+        transitionForTolea.setToX(150);
+        transitionForTolea.setToY(120);
         transitionForTolea.play();
+
+
+        //PLAY BUTTON
+
+        Image imageButtonPlay = new Image("backk.png");
+        ImageView imageViewButton = new ImageView(imageButtonPlay);
+        imageViewButton.setFitWidth(100);
     }
 }
