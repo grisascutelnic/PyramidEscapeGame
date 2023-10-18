@@ -9,6 +9,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 
 public class Game extends Application {
     public static void main(String[] args) {
@@ -46,13 +47,6 @@ public class Game extends Application {
         movingImageViewTolea.setFitWidth(100);
         movingImageViewTolea.setFitHeight(250);
 
-        StackPane root = new StackPane();
-        root.getChildren().addAll(backgroundImageView, movingImageViewGrisa, movingImageViewDima, movingImageViewTolea);
-
-        Scene scene = new Scene(root, 1000, 700);
-        stage.setScene(scene);
-        stage.setTitle("Pyramid Escape Game");
-        stage.show();
 
         // Tranzitia de deplasare a faraonilor
         TranslateTransition transitionForGrisa = new TranslateTransition(Duration.seconds(2), movingImageViewGrisa);
@@ -73,8 +67,25 @@ public class Game extends Application {
 
         //PLAY BUTTON
 
-        Image imageButtonPlay = new Image("backk.png");
+        Text text = new Text("Welcome to the Pyramid Escape Game!");
+        text.setTranslateY(-320);
+
+        Image imageButtonPlay = new Image("back.png");
         ImageView imageViewButton = new ImageView(imageButtonPlay);
-        imageViewButton.setFitWidth(100);
+        imageViewButton.setFitWidth(150);
+        imageViewButton.setFitHeight(50);
+
+        Button playButton = new Button();
+        playButton.setGraphic(imageViewButton);
+        StackPane root = new StackPane();
+        root.getChildren().addAll(backgroundImageView, movingImageViewGrisa, movingImageViewDima, movingImageViewTolea, text, playButton);
+
+        playButton.setTranslateY(-200);
+
+        Scene scene = new Scene(root, 1000, 700);
+        stage.setScene(scene);
+        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+        stage.setTitle("Pyramid Escape Game");
+        stage.show();
     }
 }

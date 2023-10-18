@@ -1,0 +1,5 @@
+.text {
+    -fx-fill: blue; /* culoarea textului */
+    -fx-font-size: 24px; /* dimensiunea textului */
+    -fx-font-family: "Arial"; /* fontul textului */
+}
