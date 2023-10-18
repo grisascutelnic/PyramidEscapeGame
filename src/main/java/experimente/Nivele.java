@@ -3,15 +3,14 @@ package experimente;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Nivele extends Application {
     private Stage stage;
-    private Scene pagina1, pagina2;
 
     public static void main(String[] args) {
         launch(args);
@@ -20,34 +19,47 @@ public class Nivele extends Application {
     @Override
     public void start(Stage primaryStage) {
         stage = primaryStage;
+        primaryStage.setTitle("Pagina Principală");
 
-        // Pagina 1
-//        Circle cercAlbastru = new Circle(100, Color.BLUE); // Creează un cerc albastru
-//        Button button1 = new Button("Navighează la Pagina 2");
-//        button1.setOnAction(e -> afiseazaPagina2());
-//        StackPane layout1 = new StackPane();
-//        layout1.getChildren().addAll(cercAlbastru, button1);
-//        pagina1 = new Scene(layout1, 600, 600);
 
-        // Pagina 2
-        Rectangle patratGalben = new Rectangle(200, 200, Color.RED); // Creează un patrat galben
-        Button button2 = new Button("Navighează la Pagina 1");
-        button2.setOnAction(e -> afiseazaPagina1());
-        StackPane layout2 = new StackPane();
-        layout2.getChildren().addAll(patratGalben, button2);
-        pagina2 = new Scene(layout2, 600, 600);
+        // Încărcați imaginea de fundal pentru Pagina Principală
+        Image background = new Image("background.png");
+        ImageView backgroundImageView = new ImageView(background);
+        backgroundImageView.setFitWidth(1000);
+        backgroundImageView.setFitHeight(700);
 
-        // Afișează pagina inițială
-        stage.setScene(pagina1);
-        stage.setTitle("Navigare între pagini");
+        Nivel1 pagina1 = new Nivel1(stage);
+        Nivel2 pagina2 = new Nivel2(stage);
+
+        // Buton pentru Nivelul 1
+        Button button1 = new Button("Nivel 1");
+        button1.setOnAction(e -> afiseazaNivel1());
+
+        // Buton pentru Nivelul 2
+        Button button2 = new Button("Nivel 2");
+        button2.setOnAction(e -> afiseazaNivel2());
+
+        // Așezați butoanele într-un VBox
+        VBox buttonBox = new VBox(10); // 10 este spațiul între butoane
+        buttonBox.getChildren().addAll(button1, button2);
+        buttonBox.setAlignment(javafx.geometry.Pos.CENTER);
+
+        // Așezați imaginea de fundal și butoanele într-un StackPane
+        StackPane layout = new StackPane();
+        layout.getChildren().addAll(backgroundImageView, buttonBox);
+
+        Scene scene = new Scene(layout, 1000, 700);
+        stage.setScene(scene);
         stage.show();
     }
 
-    private void afiseazaPagina1() {
-        stage.setScene(pagina1);
+    private void afiseazaNivel1() {
+        Nivel1 nivel1 = new Nivel1(stage);
+        stage.setScene(nivel1.getScene());
     }
 
-    private void afiseazaPagina2() {
-        stage.setScene(pagina2);
+    private void afiseazaNivel2() {
+        Nivel2 nivel2 = new Nivel2(stage);
+        stage.setScene(nivel2.getScene());
     }
 }
