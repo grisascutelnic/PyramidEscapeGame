@@ -2,7 +2,6 @@ package experimente;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,11 +21,6 @@ public class ExperimentDima extends Application {
     private ImageView imageView = new ImageView();
     private Stage stage;
 
-    private Button createOperatorButton(String operatorSymbol) {
-        Button button = new Button(operatorSymbol);
-        return button;
-    }
-
     public static void main(String[] args) {
         launch(args);
     }
@@ -36,7 +30,7 @@ public class ExperimentDima extends Application {
         stage = primaryStage;
         primaryStage.setTitle("Sudoku Game");
 
-        Image background = new Image("background.png");
+        Image background = new Image("background1.jpg");
         ImageView backgroundImageView = new ImageView(background);
 
         int[][] board = game.getBoard();
@@ -63,40 +57,6 @@ public class ExperimentDima extends Application {
         // Plasează panoul centrat în BorderPane
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(centerPane);
-
-        // Adaugă un nou GridPane pentru pătratele numerotate de la 1 la 9
-        GridPane numberGrid = new GridPane();
-        numberGrid.setHgap(10);
-        numberGrid.setVgap(10);
-        numberGrid.setPadding(new Insets(10));
-
-        for (int i = 1; i <= 9; i++) {
-            String simbol = null;
-            if (i == 1)
-                simbol = "I";
-            if (i == 2)
-                simbol = "II";
-            if (i == 3)
-                simbol = "III";
-            if (i == 4)
-                simbol = "IV";
-            if (i == 5)
-                simbol = "V";
-            if (i == 6)
-                simbol = "VI";
-            if (i == 7)
-                simbol = "VII";
-            if (i == 8)
-                simbol = "VIII";
-            if (i == 9)
-                simbol = "IX";
-            Button numberButton = createOperatorButton(simbol);
-            numberButton.setMinSize(60, 60);
-            numberButton.setStyle("-fx-font-size: 18;");
-            numberGrid.add(numberButton, (i - 1) % 9, (i - 1) / 9);
-        }
-
-        centerPane.getChildren().add(numberGrid);
 
         Scene scene = new Scene(borderPane, 1000, 800);
         primaryStage.setScene(scene);
@@ -152,5 +112,4 @@ public class ExperimentDima extends Application {
             });
         });
     }
-
 }

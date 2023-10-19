@@ -64,7 +64,7 @@ public class ExperimentTolea extends Application {
             layout.setAlignment(Pos.CENTER);
             layout.getChildren().addAll(wordLabel, letterInput, guessButton, attemptsLabel);
 
-            Scene scene = new Scene(layout, 300, 200);
+            Scene scene = new Scene(layout, 600, 450);
             primaryStage.setTitle("Guess the Word Game");
             primaryStage.setScene(scene);
             primaryStage.show();
