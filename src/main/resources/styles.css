@@ -1,5 +1,15 @@
 .text {
-    -fx-fill: blue; /* culoarea textului */
-    -fx-font-size: 24px; /* dimensiunea textului */
-    -fx-font-family: "Arial"; /* fontul textului */
+    -fx-fill: #ad531c;
+    -fx-font-size: 24px;
+    -fx-font-family: "Comic Sans MS";
+}
+.playButton {
+    -fx-padding: 0;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+    -fx-background-color: transparent;
+}
+
+.playButton:hover {
+    -fx-opacity: 60%;
 }

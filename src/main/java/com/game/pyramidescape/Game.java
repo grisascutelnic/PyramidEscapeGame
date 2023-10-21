@@ -68,14 +68,16 @@ public class Game extends Application {
         //PLAY BUTTON
 
         Text text = new Text("Welcome to the Pyramid Escape Game!");
-        text.setTranslateY(-320);
+        text.setTranslateY(-300);
+        text.getStyleClass().add("text");
 
-        Image imageButtonPlay = new Image("back.png");
+        Image imageButtonPlay = new Image("playBut1.png");
         ImageView imageViewButton = new ImageView(imageButtonPlay);
         imageViewButton.setFitWidth(150);
-        imageViewButton.setFitHeight(50);
+        imageViewButton.setFitHeight(40);
 
         Button playButton = new Button();
+        playButton.getStyleClass().add("playButton");
         playButton.setGraphic(imageViewButton);
         StackPane root = new StackPane();
         root.getChildren().addAll(backgroundImageView, movingImageViewGrisa, movingImageViewDima, movingImageViewTolea, text, playButton);
