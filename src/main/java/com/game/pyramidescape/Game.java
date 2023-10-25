@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 public class Game extends Application {
     public static void main(String[] args) {
@@ -76,6 +78,19 @@ public class Game extends Application {
         imageViewButton.setFitWidth(150);
         imageViewButton.setFitHeight(40);
 
+//        Button playButton = new Button();
+//        playButton.getStyleClass().add("playButton");
+//        playButton.setGraphic(imageViewButton);
+//        StackPane root = new StackPane();
+//        root.getChildren().addAll(backgroundImageView, movingImageViewGrisa, movingImageViewDima, movingImageViewTolea, text, playButton);
+//
+//        playButton.setTranslateY(-200);
+//
+//        Scene scene = new Scene(root, 1000, 700);
+//        stage.setScene(scene);
+//        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+//        stage.setTitle("Pyramid Escape Game");
+//        stage.show();
         Button playButton = new Button();
         playButton.getStyleClass().add("playButton");
         playButton.setGraphic(imageViewButton);
@@ -83,6 +98,16 @@ public class Game extends Application {
         root.getChildren().addAll(backgroundImageView, movingImageViewGrisa, movingImageViewDima, movingImageViewTolea, text, playButton);
 
         playButton.setTranslateY(-200);
+
+        playButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                // Aici schimbăm scena la cea din clasa Introducere
+                Scene introducereScene = Introducere.createIntroducereScene();
+                Stage currentStage = (Stage) playButton.getScene().getWindow();
+                currentStage.setScene(introducereScene);
+            }
+        });
 
         Scene scene = new Scene(root, 1000, 700);
         stage.setScene(scene);
