@@ -112,7 +112,6 @@ public class Game extends Application {
         stage.setTitle("Pyramid Escape Game");
         stage.show();
 
-
     }
 
     private void afisareIntroducere() {

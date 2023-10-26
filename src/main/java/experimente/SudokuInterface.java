@@ -15,7 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextInputDialog;
 import java.util.Optional;
 
-public class ExperimentDima extends Application {
+public class SudokuInterface extends Application {
     private SudokuGame game = new SudokuGame();
     private GridPane grid = new GridPane();
     private ImageView imageView = new ImageView();
@@ -24,7 +24,6 @@ public class ExperimentDima extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
     public void start(Stage primaryStage) {
         stage = primaryStage;
