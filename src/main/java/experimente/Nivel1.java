@@ -1,29 +1,29 @@
 package experimente;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.stage.Stage;
+import javafx.scene.shape.Rectangle;
 
-public class Nivel1 {
-    private Scene pagina1;
+public class Nivel1 extends Application {
 
-    Nivel1(Stage stage) {
-        Circle cercAlbastru = new Circle(100, Color.BLUE);
-        Button button1 = new Button("Navighează la Pagina 2");
-        button1.setOnAction(e -> afiseazaPagina2(stage));
-        StackPane layout1 = new StackPane();
-        layout1.getChildren().addAll(cercAlbastru, button1);
-        pagina1 = new Scene(layout1, 800, 600);
+    public static void main(String[] args) {
+        launch(args);
     }
 
-    public Scene getScene() {
-        return pagina1;
-    }
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Nivel 1");
 
-    private void afiseazaPagina2(Stage stage) {
-        stage.setScene(new Nivel2(stage).getScene());
+        Rectangle rectangle = new Rectangle(100, 100, Color.RED);
+
+        StackPane layout = new StackPane();
+        layout.getChildren().addAll(rectangle);
+
+        Scene scene = new Scene(layout, 300, 200);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

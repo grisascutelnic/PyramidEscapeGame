@@ -102,9 +102,9 @@ public class Game extends Application {
 
         playButton.setTranslateY(-200);
 
-        playButton.setOnAction(event -> {
-            afisareIntroducere();
-        });
+//        playButton.setOnAction(event -> {
+//            afisareIntroducere();
+//        });
 
         Scene scene = new Scene(root, 1000, 700);
         stage.setScene(scene);
@@ -114,8 +114,8 @@ public class Game extends Application {
 
     }
 
-    private void afisareIntroducere() {
-        Introducere introducere = new Introducere(stage);
-        stage.setScene(introducere.getIntroducereScene());
-    }
+//    private void afisareIntroducere() {
+//        Introducere introducere = new Introducere(stage);
+//        stage.setScene(introducere.getIntroducereScene());
+//    }
 }
