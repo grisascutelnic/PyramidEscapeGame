@@ -18,10 +18,13 @@ public class Game extends Application {
         launch(args);
     }
 
+    private Stage stage;
     @Override
-    public void start(Stage stage) {
+    public void start(Stage primaryStage) {
 
         //INTERFATA
+
+        stage = primaryStage;
 
         // Imaginea de fundal
         Image backgroundImage = new Image("background6.jpg");
@@ -99,14 +102,8 @@ public class Game extends Application {
 
         playButton.setTranslateY(-200);
 
-        playButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                // Aici schimbăm scena la cea din clasa Introducere
-                Scene introducereScene = Introducere.createIntroducereScene();
-                Stage currentStage = (Stage) playButton.getScene().getWindow();
-                currentStage.setScene(introducereScene);
-            }
+        playButton.setOnAction(event -> {
+            afisareIntroducere();
         });
 
         Scene scene = new Scene(root, 1000, 700);
@@ -114,5 +111,12 @@ public class Game extends Application {
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         stage.setTitle("Pyramid Escape Game");
         stage.show();
+
+
+    }
+
+    private void afisareIntroducere() {
+        Introducere introducere = new Introducere(stage);
+        stage.setScene(introducere.getIntroducereScene());
     }
 }
