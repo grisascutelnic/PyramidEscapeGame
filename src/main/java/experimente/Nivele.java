@@ -28,8 +28,7 @@ public class Nivele extends Application {
         backgroundImageView.setFitWidth(1000);
         backgroundImageView.setFitHeight(700);
 
-        Nivel1 pagina1 = new Nivel1(stage);
-        Nivel2 pagina2 = new Nivel2(stage);
+
 
         // Buton pentru Nivelul 1
         Button button1 = new Button("Nivel 1");

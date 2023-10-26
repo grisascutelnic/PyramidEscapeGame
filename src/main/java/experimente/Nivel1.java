@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class Nivel1 {
     private Scene pagina1;
 
-    public Nivel1(Stage stage) {
+    Nivel1(Stage stage) {
         Circle cercAlbastru = new Circle(100, Color.BLUE);
         Button button1 = new Button("Navighează la Pagina 2");
         button1.setOnAction(e -> afiseazaPagina2(stage));
