@@ -1,11 +1,9 @@
 package experimente;
 
 import javafx.application.Application;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
 public class Nivel2 extends Application {
 
@@ -17,12 +15,11 @@ public class Nivel2 extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Nivel 2");
 
-        Circle circle = new Circle(100, Color.BLUE);
-
         StackPane layout = new StackPane();
-        layout.getChildren().addAll(circle);
 
-        Scene scene = new Scene(layout, 300, 200);
+        Scene scene = new Scene(layout, 400, 200);
+        //scene.setStyle("-fx-background-color: lightblue");
+
         primaryStage.setScene(scene);
         primaryStage.show();
     }
