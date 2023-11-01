@@ -24,17 +24,22 @@ public class FireworksEffect extends Application {
         for (int i = 0; i < numSparks; i++) {
             Circle spark1 = new Circle(3, Color.YELLOW);
             Circle spark2 = new Circle(3, Color.BLUE);
+            Circle spark3 = new Circle(3, Color.RED);
             root.getChildren().add(spark1);
             root.getChildren().add(spark2);
+            root.getChildren().add(spark3);
 
 
             // Generează o animație de mișcare aleatoare pentru fiecare scânteie
             Timeline timeline1 = createSparkAnimation(spark1);
             Timeline timeline2 = createSparkAnimation(spark2);
+            Timeline timeline3 = createSparkAnimation(spark3);
             timeline1.setDelay(Duration.seconds(Math.random() * 3));
             timeline1.play();
             timeline2.setDelay(Duration.seconds(Math.random() * 3));
             timeline2.play();
+            timeline1.setDelay(Duration.seconds(Math.random() * 3));
+            timeline3.play();
         }
 
         primaryStage.show();
@@ -45,13 +50,13 @@ public class FireworksEffect extends Application {
         Timeline timeline = new Timeline();
 
         // Setează o valoare inițială pentru Y
-        KeyValue startY = new KeyValue(spark.centerYProperty(), 600);
+        KeyValue startY = new KeyValue(spark.centerYProperty(), 200);
 
         // Setează o valoare finală pentru Y (poziție deasupra)
-        KeyValue endY = new KeyValue(spark.centerYProperty(), Math.random() * 200);
+        KeyValue endY = new KeyValue(spark.centerXProperty(), Math.random() * 800);
 
         // Setează o valoare finală pentru X (mișcare laterală aleatoare)
-        KeyValue endX = new KeyValue(spark.centerXProperty(), Math.random() * 800);
+        KeyValue endX = new KeyValue(spark.centerYProperty(), Math.random() * 600);
 
         // Definim o durată pentru animație
         Duration duration = Duration.seconds(2);

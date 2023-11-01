@@ -89,7 +89,7 @@ public class SudokuInterface extends Application {
                 try {
                     int num = Integer.parseInt(numStr);
                     if (num >= 1 && num <= 9) {
-                        if (currentValue == 0 || game.isValid(row, col, num)) {
+                        if (currentValue == 0 && game.isValid(row, col, num)) {
                             board[row][col] = num;
                             cell.setText(String.valueOf(num));
                             cell.setStyle("-fx-font-size: 18; -fx-background-color: #ffcccc;"); // Culoare rosie spalata
@@ -101,6 +101,8 @@ public class SudokuInterface extends Application {
                         } else {
                             // Numărul introdus nu este valid
                             showError("Eroare", "Numărul introdus nu este valid.");
+                            // Reveniți la valoarea anterioară a celulei
+                            cell.setText(currentValue == 0 ? "" : String.valueOf(currentValue));
                         }
                     } else {
                         // Numărul introdus nu este în intervalul corect
