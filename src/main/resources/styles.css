@@ -3,6 +3,13 @@
     -fx-font-size: 24px;
     -fx-font-family: "Comic Sans MS";
 }
+
+.textt {
+    -fx-fill: #313030;
+    -fx-font-size: 24px;
+    -fx-font-family: "Comic Sans MS";
+}
+
 .playButton {
     -fx-padding: 0;
     -fx-border-width: 0;
