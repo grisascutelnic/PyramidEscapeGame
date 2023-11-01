@@ -1,7 +1,10 @@
 package com.game.pyramidescape;
 
+<<<<<<< HEAD
 import experimente.Nivel1;
 import experimente.SudokuInterface;
+=======
+>>>>>>> 162ec0971816d2e168b93a7e540b024a7cacb2b8
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -13,7 +16,7 @@ import javafx.util.Duration;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 
 public class Game extends Application {
     public static void main(String[] args) {
@@ -83,19 +86,6 @@ public class Game extends Application {
         imageViewButton.setFitWidth(150);
         imageViewButton.setFitHeight(40);
 
-//        Button playButton = new Button();
-//        playButton.getStyleClass().add("playButton");
-//        playButton.setGraphic(imageViewButton);
-//        StackPane root = new StackPane();
-//        root.getChildren().addAll(backgroundImageView, movingImageViewGrisa, movingImageViewDima, movingImageViewTolea, text, playButton);
-//
-//        playButton.setTranslateY(-200);
-//
-//        Scene scene = new Scene(root, 1000, 700);
-//        stage.setScene(scene);
-//        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
-//        stage.setTitle("Pyramid Escape Game");
-//        stage.show();
         Button playButton = new Button();
         playButton.getStyleClass().add("playButton");
         playButton.setGraphic(imageViewButton);
@@ -104,16 +94,17 @@ public class Game extends Application {
 
         playButton.setTranslateY(-200);
 
-//        playButton.setOnAction(event -> {
-//            afisareIntroducere();
-//        });
-
         playButton.setOnAction(event -> {
+<<<<<<< HEAD
 //          Introducere introducere = new Introducere();
 //          introducere.start(new Stage());
             SudokuInterface sudoku = new SudokuInterface();
             sudoku.start(new Stage());
             primaryStage.close();
+=======
+            Introducere introducere = new Introducere();
+            introducere.start(primaryStage);
+>>>>>>> 162ec0971816d2e168b93a7e540b024a7cacb2b8
         });
 
         Scene scene = new Scene(root, 1000, 700);
@@ -123,9 +114,4 @@ public class Game extends Application {
         stage.show();
 
     }
-
-//    private void afisareIntroducere() {
-//        Introducere introducere = new Introducere(stage);
-//        stage.setScene(introducere.getIntroducereScene());
-//    }
 }

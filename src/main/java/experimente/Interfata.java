@@ -1,11 +1,9 @@
 package experimente;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.layout.HBox;
 
 public class Interfata extends Application {
 
@@ -15,28 +13,31 @@ public class Interfata extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Interfata");
+        // Creăm butoanele pentru navigare
+        Button nivel1Button = new Button("Nivel 1");
+        Button nivel2Button = new Button("Nivel 2");
 
-        Button btnNivel1 = new Button("Nivel 1");
-        btnNivel1.setOnAction(e -> {
+        // Setăm acțiuni pentru butoane
+        nivel1Button.setOnAction(e -> {
+            Stage nivel1Stage = new Stage();
             Nivel1 nivel1 = new Nivel1();
-            nivel1.start(new Stage());
-            primaryStage.close();
+            nivel1.start(nivel1Stage);
         });
 
-        Button btnNivel2 = new Button("Nivel 2");
-        btnNivel2.setOnAction(e -> {
+
+        nivel2Button.setOnAction(e -> {
+            // Deschide clasa Nivel2
             Nivel2 nivel2 = new Nivel2();
-            nivel2.start(new Stage());
-            primaryStage.close();
+            nivel2.start(primaryStage);
         });
 
-        HBox layout = new HBox(20); // HBox pentru aranjare orizontală
-        layout.getChildren().addAll(btnNivel1, btnNivel2);
+        // Creăm o interfață cu butoanele
+        VBox root = new VBox(10);
+        root.getChildren().addAll(nivel1Button, nivel2Button);
 
-        Scene scene = new Scene(layout, 400, 200);
-        //scene.setStyle("-fx-background-color: lightblue");
-
+        // Afișăm interfața în scenă
+        Scene scene = new Scene(root, 300, 200);
+        primaryStage.setTitle("Nivel de Interfata");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
