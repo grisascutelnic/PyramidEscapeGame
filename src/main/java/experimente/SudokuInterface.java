@@ -1,18 +1,21 @@
 package experimente;
 
+import experimente.SudokuGame;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextInputDialog;
+
 import java.util.Optional;
 
 public class SudokuInterface extends Application {
@@ -24,6 +27,7 @@ public class SudokuInterface extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
     @Override
     public void start(Stage primaryStage) {
         stage = primaryStage;
@@ -41,7 +45,13 @@ public class SudokuInterface extends Application {
                 cell.setStyle("-fx-font-size: 18;");
                 final int r = row;
                 final int c = col;
-                cell.setOnAction(event -> onCellClick(r, c));
+
+                if (board[row][col] != 0) {
+                    cell.setDisable(true); // Blochează celulele cu valori preexistente
+                } else {
+                    cell.setOnAction(event -> onCellClick(r, c, cell));
+                }
+
                 grid.add(cell, col, row);
             }
         }
@@ -57,12 +67,12 @@ public class SudokuInterface extends Application {
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(centerPane);
 
-        Scene scene = new Scene(borderPane, 1000, 800);
+        Scene scene = new Scene(borderPane, 850, 650);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void onCellClick(int row, int col) {
+    private void onCellClick(int row, int col, Button cell) {
         int[][] board = game.getBoard();
         int currentValue = board[row][col];
 
@@ -79,36 +89,29 @@ public class SudokuInterface extends Application {
                     if (num >= 1 && num <= 9) {
                         if (currentValue == 0 || game.isValid(row, col, num)) {
                             board[row][col] = num;
-                            Button cell = new Button(String.valueOf(num));
-                            cell.setMinSize(58, 58);
-                            cell.setStyle("-fx-background-color: #ffad99;-fx-font-size: 18; -fx-text-fill: #000000;");
-                            cell.setDisable(true);
-                            grid.add(cell, col, row);
+                            cell.setText(String.valueOf(num));
+                            cell.setStyle("-fx-font-size: 18; -fx-background-color: #ffcccc;"); // Culoare rosie spalata
                         } else {
                             // Numărul introdus nu este valid
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setTitle("Eroare");
-                            alert.setHeaderText(null);
-                            alert.setContentText("Numărul introdus nu este valid.");
-                            alert.showAndWait();
+                            showError("Eroare", "Numărul introdus nu este valid.");
                         }
                     } else {
                         // Numărul introdus nu este în intervalul corect
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Eroare");
-                        alert.setHeaderText(null);
-                        alert.setContentText("Introdu un număr de la 1 la 9.");
-                        alert.showAndWait();
+                        showError("Eroare", "Introdu un număr de la 1 la 9.");
                     }
                 } catch (NumberFormatException e) {
                     // Nu s-a introdus un număr valid
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Eroare");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Introdu un număr valid.");
-                    alert.showAndWait();
+                    showError("Eroare", "Introdu un număr valid.");
                 }
             });
         });
+    }
+
+    private void showError(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

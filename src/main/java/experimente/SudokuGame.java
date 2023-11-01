@@ -10,7 +10,6 @@ public class SudokuGame {
         initializeBoard();
         generatePuzzle();
     }
-
     private void initializeBoard() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -18,7 +17,6 @@ public class SudokuGame {
             }
         }
     }
-
     boolean isValid(int row, int col, int num) {
         // Verifică dacă numărul este deja pe rând sau coloană
         for (int i = 0; i < 9; i++) {
@@ -26,7 +24,6 @@ public class SudokuGame {
                 return false;
             }
         }
-
         // Verifică dacă numărul este deja în subgrila 3x3
         int subgridRow = row - row % 3;
         int subgridCol = col - col % 3;
@@ -40,7 +37,6 @@ public class SudokuGame {
 
         return true;
     }
-
     private boolean solve() {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
@@ -60,11 +56,9 @@ public class SudokuGame {
         }
         return true;
     }
-
     public int[][] getBoard() {
         return board;
     }
-
     public void generatePuzzle() {
         solve();
         Random rand = new Random();
