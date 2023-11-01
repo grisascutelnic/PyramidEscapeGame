@@ -1,5 +1,7 @@
 package com.game.pyramidescape;
 
+import experimente.Nivel1;
+import experimente.SudokuInterface;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -10,16 +12,20 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
+import javafx.event.ActionEvent;
 
 public class Game extends Application {
     public static void main(String[] args) {
         launch(args);
     }
 
+    private Stage stage;
     @Override
-    public void start(Stage stage) {
+    public void start(Stage primaryStage) {
 
         //INTERFATA
+
+        stage = primaryStage;
 
         // Imaginea de fundal
         Image backgroundImage = new Image("background6.jpg");
@@ -68,24 +74,37 @@ public class Game extends Application {
         //PLAY BUTTON
 
         Text text = new Text("Welcome to the Pyramid Escape Game!");
-        text.setTranslateY(-320);
+        text.setTranslateY(-300);
+        text.getStyleClass().add("text");
 
-        Image imageButtonPlay = new Image("back.png");
+        Image imageButtonPlay = new Image("playBut1.png");
         ImageView imageViewButton = new ImageView(imageButtonPlay);
         imageViewButton.setFitWidth(150);
-        imageViewButton.setFitHeight(50);
+        imageViewButton.setFitHeight(40);
 
         Button playButton = new Button();
+        playButton.getStyleClass().add("playButton");
         playButton.setGraphic(imageViewButton);
         StackPane root = new StackPane();
         root.getChildren().addAll(backgroundImageView, movingImageViewGrisa, movingImageViewDima, movingImageViewTolea, text, playButton);
 
         playButton.setTranslateY(-200);
 
+        playButton.setOnAction(event -> {
+//          Introducere introducere = new Introducere();
+//          introducere.start(new Stage());
+            SudokuInterface sudoku = new SudokuInterface();
+            sudoku.start(new Stage());
+            primaryStage.close();
+//            Introducere introducere = new Introducere();
+//            introducere.start(primaryStage);
+        });
+
         Scene scene = new Scene(root, 1000, 700);
         stage.setScene(scene);
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         stage.setTitle("Pyramid Escape Game");
         stage.show();
+
     }
 }
