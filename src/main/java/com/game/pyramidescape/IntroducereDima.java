@@ -19,12 +19,12 @@ public class IntroducereDima extends Application {
     private String textGrisa = "Salut! Eu ma numesc Grigore Scutelnic si\n" +
             "azi va voi prezenta micul nostru joculet de tip\n" +
             "Pyramid Escape Game. Bonne chance!";
-    private Text text = new Text();
+    private Text textt = new Text();
     private int index;
     @Override
     public void start(Stage primaryStage) {
-        text.setTranslateY(-150);
-        //text.setTranslateX(-0);
+        textt.setTranslateY(-150);
+        textt.getStyleClass().add("textt");
 
         Image imageButtonPlay = new Image("playBut1.png");
         ImageView imageViewButton = new ImageView(imageButtonPlay);
@@ -62,9 +62,9 @@ public class IntroducereDima extends Application {
             Timeline timeline = new Timeline(
                     new KeyFrame(Duration.millis(50), e -> {
                         if (index <= textGrisa.length()) {
-                            text.setText(textGrisa.substring(0, index));
+                            textt.setText(textGrisa.substring(0, index));
                             index++;
-                        } else if (index == textGrisa.length()+10) text.setText(textGrisa.substring(0,0));
+                        } else if (index == textGrisa.length()+10) textt.setText(textGrisa.substring(0,0));
                     })
             );
             timeline.setCycleCount(textGrisa.length() + 14);
@@ -75,8 +75,9 @@ public class IntroducereDima extends Application {
 
 
         StackPane layout = new StackPane();
-        layout.getChildren().addAll(backgroundImageView, movingImageView, text, playButton);
+        layout.getChildren().addAll(backgroundImageView, movingImageView, textt, playButton);
 
+        layout.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         Scene introducereScene = new Scene(layout, 1000, 700);
         primaryStage.setScene(introducereScene);
         primaryStage.show();
