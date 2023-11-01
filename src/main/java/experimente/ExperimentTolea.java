@@ -2,83 +2,65 @@ package experimente;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-import java.util.Random;
+
 public class ExperimentTolea extends Application {
-        private String[] words = {"JAVA", "PYTHON", "PROGRAMMING", "COMPUTER", "DEVELOPER", "CODE"};
-        private String wordToGuess;
-        private StringBuilder currentGuess;
-        private int attemptsLeft = 16;
+    private SudokuLogique game = new SudokuLogique();
+    private GridPane grid = new GridPane();
+    private Stage stage;
 
-        public static void main(String[] args) {
-            launch(args);
+
+    @Override
+    public void start(Stage primaryStage) {
+
+        Image backgroundImage = new Image("background5.jpg");
+        ImageView backgroundImageView = new ImageView(backgroundImage);
+
+        backgroundImageView.setFitWidth(1000);
+        backgroundImageView.setFitHeight(700);
+
+        stage = primaryStage;
+        primaryStage.setTitle("Pyramide Escape");
+
+        int[][] board = game.getBoard();
+        for (int row = 0; row < 6; row++) {
+            for (int col = 0; col < 6; col++) {
+                Button cell = new Button();
+                cell.setMinSize(68, 68);
+                cell.setStyle("-fx-font-size: 18;");
+
+                grid.add(cell, col, row);
+            }
         }
 
-        @Override
-        public void start(Stage primaryStage) {
-            Random random = new Random();
-            wordToGuess = words[random.nextInt(words.length)];
-            currentGuess = new StringBuilder(wordToGuess.replaceAll("[a-zA-Z]", "_"));
+        // Configurează alinierea gridului la centru în mod vertical și orizontal
+        grid.setAlignment(Pos.CENTER);
 
-            Label wordLabel = new Label(currentGuess.toString());
-            TextField letterInput = new TextField();
-            Button guessButton = new Button("Guess");
-            Label attemptsLabel = new Label("Attempts left: " + attemptsLeft);
+        // Creează un panou VBox pentru a încadra gridul și imaginea de fundal
+        StackPane centerPane = new StackPane();
+        centerPane.getChildren().addAll(backgroundImageView, grid);
 
-            guessButton.setOnAction(e -> {
-                String letter = letterInput.getText().toUpperCase();
-                if (letter.length() == 1 && Character.isLetter(letter.charAt(0))) {
-                    if (wordToGuess.contains(letter)) {
-                        for (int i = 0; i < wordToGuess.length(); i++) {
-                            if (wordToGuess.charAt(i) == letter.charAt(0)) {
-                                currentGuess.setCharAt(i, letter.charAt(0));
-                            }
-                        }
-                        wordLabel.setText(currentGuess.toString());
-                    } else {
-                        attemptsLeft--;
-                        attemptsLabel.setText("Attempts left: " + attemptsLeft);
-                        if (attemptsLeft == 0) {
-                            endGame("You lost! The word was: " + wordToGuess);
-                        }
-                    }
-                } else {
-                    showAlert("Invalid input. Please enter a single letter.");
-                }
+        // Plasează panoul centrat în BorderPane
+        BorderPane borderPane = new BorderPane();
+        borderPane.setCenter(centerPane);
 
-                if (currentGuess.toString().equals(wordToGuess)) {
-                    endGame("Congratulations! You guessed the word: " + wordToGuess);
-                }
+        Scene scene = new Scene(borderPane, 1000, 700);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    public static void main(String[] args) {
+        launch(args);
+    }
 
-                letterInput.clear();
-            });
 
-            VBox layout = new VBox(20);
-            layout.setAlignment(Pos.CENTER);
-            layout.getChildren().addAll(wordLabel, letterInput, guessButton, attemptsLabel);
 
-            Scene scene = new Scene(layout, 600, 450);
-            primaryStage.setTitle("Guess the Word Game");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        }
-
-        private void endGame(String message) {
-            showAlert(message);
-            System.exit(0);
-        }
-
-        private void showAlert(String message) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Game Over");
-            alert.setHeaderText(null);
-            alert.setContentText(message);
-            alert.showAndWait();
-        }
 }
