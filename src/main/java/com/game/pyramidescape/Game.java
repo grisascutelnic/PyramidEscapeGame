@@ -1,5 +1,6 @@
 package com.game.pyramidescape;
 
+import experimente.Nivel1;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -105,6 +106,12 @@ public class Game extends Application {
 //        playButton.setOnAction(event -> {
 //            afisareIntroducere();
 //        });
+
+        playButton.setOnAction(event -> {
+            Introducere introducere = new Introducere();
+            introducere.start(new Stage());
+            primaryStage.close();
+        });
 
         Scene scene = new Scene(root, 1000, 700);
         stage.setScene(scene);

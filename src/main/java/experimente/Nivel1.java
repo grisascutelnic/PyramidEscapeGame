@@ -24,6 +24,7 @@ public class Nivel1 extends Application {
             primaryStage.close();
         });
 
+
         HBox layout = new HBox(20); // HBox pentru aranjare orizontală
         layout.getChildren().addAll(btnNivel1);
 
