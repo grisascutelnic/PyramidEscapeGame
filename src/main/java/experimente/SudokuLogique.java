@@ -2,10 +2,10 @@ package experimente;
 
 import java.util.Random;
 
-public class SudokuGame {
+public class SudokuLogique {
     private int[][] board;
 
-    public SudokuGame() {
+    public SudokuLogique() {
         board = new int[9][9];
         initializeBoard();
         generatePuzzle();
@@ -34,7 +34,6 @@ public class SudokuGame {
                 }
             }
         }
-
         return true;
     }
     private boolean solve() {

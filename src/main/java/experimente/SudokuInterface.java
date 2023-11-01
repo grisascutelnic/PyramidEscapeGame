@@ -1,6 +1,6 @@
 package experimente;
 
-import experimente.SudokuGame;
+import experimente.SudokuLogique;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import java.util.Optional;
 
 public class SudokuInterface extends Application {
-    private SudokuGame game = new SudokuGame();
+    private SudokuLogique game = new SudokuLogique();
     private GridPane grid = new GridPane();
     private Stage stage;
 
@@ -29,8 +29,7 @@ public class SudokuInterface extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
-        Image backgroundImage = new Image("background7.jpg");
+        Image backgroundImage = new Image("background5.jpg");
         ImageView backgroundImageView = new ImageView(backgroundImage);
 
         backgroundImageView.setFitWidth(1000);
@@ -44,7 +43,7 @@ public class SudokuInterface extends Application {
             for (int col = 0; col < 9; col++) {
                 Button cell = new Button(board[row][col] == 0 ? "" : String.valueOf(board[row][col]));
                 cell.setMinSize(59, 59);
-                cell.setStyle("-fx-font-size: 18;");
+                cell.setStyle("-fx-font-size: 18; -fx-font-weight: bold;");
                 final int r = row;
                 final int c = col;
 
@@ -58,21 +57,22 @@ public class SudokuInterface extends Application {
             }
         }
 
-        // Creează un panou VBox pentru a încadra gridul
+        // Configurează alinierea gridului la centru în mod vertical și orizontal
+        grid.setAlignment(Pos.CENTER);
+
+        // Creează un panou VBox pentru a încadra gridul și imaginea de fundal
         StackPane centerPane = new StackPane();
         centerPane.getChildren().addAll(backgroundImageView, grid);
-
-        // Configurează alinierea panoului pentru a-l centra în mod vertical și orizontal
-        centerPane.setAlignment(Pos.CENTER);
 
         // Plasează panoul centrat în BorderPane
         BorderPane borderPane = new BorderPane();
         borderPane.setCenter(centerPane);
 
-        Scene scene = new Scene(borderPane, 850, 650);
+        Scene scene = new Scene(borderPane, 1000, 700);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
 
     private void onCellClick(int row, int col, Button cell) {
         int[][] board = game.getBoard();
@@ -89,10 +89,10 @@ public class SudokuInterface extends Application {
                 try {
                     int num = Integer.parseInt(numStr);
                     if (num >= 1 && num <= 9) {
-                        if (currentValue == 0 && game.isValid(row, col, num)) {
+                        if (game.isValid(row, col, num)) {
                             board[row][col] = num;
                             cell.setText(String.valueOf(num));
-                            cell.setStyle("-fx-font-size: 18; -fx-background-color: #ffcccc;"); // Culoare rosie spalata
+                            cell.setStyle("-fx-font-size: 18; -fx-background-color: #ffcccc;"); // Culoare roșie spălată
 
                             // Verifică dacă jocul este completat
                             if (isComplete()) {
@@ -100,7 +100,7 @@ public class SudokuInterface extends Application {
                             }
                         } else {
                             // Numărul introdus nu este valid
-                            showError("Eroare", "Numărul introdus nu este valid.");
+                            showError("Eroare", "Numărul introdus nu este valid pentru această poziție.");
                             // Reveniți la valoarea anterioară a celulei
                             cell.setText(currentValue == 0 ? "" : String.valueOf(currentValue));
                         }
@@ -115,6 +115,7 @@ public class SudokuInterface extends Application {
             });
         });
     }
+
 
     public boolean isComplete() {
         int[][] board = game.getBoard();
