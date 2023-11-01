@@ -1,6 +1,7 @@
 package com.game.pyramidescape;
 
 import experimente.Nivel1;
+import experimente.SudokuInterface;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -108,8 +109,10 @@ public class Game extends Application {
 //        });
 
         playButton.setOnAction(event -> {
-            Introducere introducere = new Introducere();
-            introducere.start(new Stage());
+//          Introducere introducere = new Introducere();
+//          introducere.start(new Stage());
+            SudokuInterface sudoku = new SudokuInterface();
+            sudoku.start(new Stage());
             primaryStage.close();
         });
 
