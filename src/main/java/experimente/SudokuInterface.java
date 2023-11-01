@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -28,6 +29,13 @@ public class SudokuInterface extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
+        Image backgroundImage = new Image("background7.jpg");
+        ImageView backgroundImageView = new ImageView(backgroundImage);
+
+        backgroundImageView.setFitWidth(1000);
+        backgroundImageView.setFitHeight(700);
+
         stage = primaryStage;
         primaryStage.setTitle("Pyramide Escape");
 
@@ -51,8 +59,8 @@ public class SudokuInterface extends Application {
         }
 
         // Creează un panou VBox pentru a încadra gridul
-        VBox centerPane = new VBox();
-        centerPane.getChildren().add(grid);
+        StackPane centerPane = new StackPane();
+        centerPane.getChildren().addAll(backgroundImageView, grid);
 
         // Configurează alinierea panoului pentru a-l centra în mod vertical și orizontal
         centerPane.setAlignment(Pos.CENTER);
