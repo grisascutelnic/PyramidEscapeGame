@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class Introducere extends Application {
+public class IntroducereGrisa extends Application {
 
     private String textGrisa = "Salut! Eu ma numesc Grigore Scutelnic si\n" +
             "azi va voi prezenta micul nostru joculet de tip\n" +
@@ -22,21 +22,40 @@ public class Introducere extends Application {
     private Text text = new Text();
     private int index;
     @Override
-    public void start(Stage stage) {
+    public void start(Stage primaryStage) {
+        text.setTranslateY(-150);
+        //text.setTranslateX(-0);
+
+        Image imageButtonPlay = new Image("playBut1.png");
+        ImageView imageViewButton = new ImageView(imageButtonPlay);
+        imageViewButton.setFitWidth(150);
+        imageViewButton.setFitHeight(40);
+
+        Button playButton = new Button();
+        playButton.getStyleClass().add("playButton");
+        playButton.setGraphic(imageViewButton);
+
+        playButton.setTranslateY(-200);
+
+        playButton.setOnAction(event -> {
+            IntroducereDima introducereDima = new IntroducereDima();
+             introducereDima.start(primaryStage);
+        });
+
         Image backgroundImage = new Image("backInterfata3.jpg");
         ImageView backgroundImageView = new ImageView(backgroundImage);
         backgroundImageView.setFitWidth(1000);
         backgroundImageView.setFitHeight(700);
 
-        Image movingImageGrisa = new Image("grisa.png");
-        ImageView movingImageViewGrisa = new ImageView(movingImageGrisa);
-        movingImageViewGrisa.setTranslateY(700);
-        movingImageViewGrisa.setFitWidth(210*1.5);
-        movingImageViewGrisa.setFitHeight(260*1.5);
+        Image movingImage = new Image("grisa.png");
+        ImageView movingImageView = new ImageView(movingImage);
+        movingImageView.setTranslateY(700);
+        movingImageView.setFitWidth(210*1.5);
+        movingImageView.setFitHeight(260*1.5);
 
-        TranslateTransition transitionForGrisa = new TranslateTransition(Duration.seconds(2), movingImageViewGrisa);
-        transitionForGrisa.setToY(120);
-        transitionForGrisa.play();
+        TranslateTransition transition = new TranslateTransition(Duration.seconds(2), movingImageView);
+        transition.setToY(120);
+        transition.play();
 
         PauseTransition pause = new PauseTransition(Duration.seconds(2.5));
         pause.setOnFinished(event -> {
@@ -56,10 +75,10 @@ public class Introducere extends Application {
 
 
         StackPane layout = new StackPane();
-        layout.getChildren().addAll(backgroundImageView, movingImageViewGrisa, text);
+        layout.getChildren().addAll(backgroundImageView, movingImageView, text, playButton);
 
         Scene introducereScene = new Scene(layout, 1000, 700);
-        stage.setScene(introducereScene);
-        stage.show();
+        primaryStage.setScene(introducereScene);
+        primaryStage.show();
     }
 }

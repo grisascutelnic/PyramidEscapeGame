@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
 
-public class Game extends Application {
+public class CeleTreiUsi extends Application {
     public static void main(String[] args) {
         launch(args);
     }
