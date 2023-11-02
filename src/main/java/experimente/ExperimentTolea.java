@@ -12,7 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-
 public class ExperimentTolea extends Application {
     private SudokuLogique game = new SudokuLogique();
     private GridPane grid = new GridPane();
