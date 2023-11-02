@@ -10,6 +10,11 @@
     -fx-font-family: "Comic Sans MS";
 }
 
+.backTabel {
+    -fx-border-color: black;
+    -fx-padding: 10px;
+}
+
 .textG {
     -fx-fill: #313030;
     -fx-font-size: 36px;
