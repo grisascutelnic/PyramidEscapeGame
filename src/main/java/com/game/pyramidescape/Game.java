@@ -51,7 +51,6 @@ public class Game extends Application {
         movingImageViewTolea.setFitWidth(100);
         movingImageViewTolea.setFitHeight(250);
 
-
         // Tranzitia de deplasare a faraonilor
         TranslateTransition transitionForGrisa = new TranslateTransition(Duration.seconds(2), movingImageViewGrisa);
         transitionForGrisa.setToX(-150);
@@ -90,7 +89,7 @@ public class Game extends Application {
         playButton.setOnAction(event -> {
 //          Introducere introducere = new Introducere();
 //          introducere.start(new Stage());
-            primaryStage.close();
+//          primaryStage.close();
             IntroducereGrisa introducere = new IntroducereGrisa();
             introducere.start(primaryStage);
         });

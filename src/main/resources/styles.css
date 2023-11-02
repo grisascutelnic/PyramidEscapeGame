@@ -32,3 +32,24 @@
 .playButton:hover {
     -fx-opacity: 60%;
 }
+
+.door1 {
+    -fx-padding: 0;
+        -fx-border-width: 0;
+        -fx-cursor: hand;
+        -fx-background-color: transparent;
+}
+
+.door2 {
+    -fx-padding: 0;
+        -fx-border-width: 0;
+        -fx-cursor: hand;
+        -fx-background-color: transparent;
+}
+
+.door3 {
+    -fx-padding: 0;
+        -fx-border-width: 0;
+        -fx-cursor: hand;
+        -fx-background-color: transparent;
+}

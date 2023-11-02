@@ -1,17 +1,15 @@
 package com.game.pyramidescape;
 
-import experimente.SudokuInterface;
-import javafx.animation.TranslateTransition;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox; // Folosește HBox în loc de VBox
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import javafx.event.ActionEvent;
 
 public class CeleTreiUsi extends Application {
     public static void main(String[] args) {
@@ -19,11 +17,9 @@ public class CeleTreiUsi extends Application {
     }
 
     private Stage stage;
+
     @Override
     public void start(Stage primaryStage) {
-
-        //INTERFATA
-
         stage = primaryStage;
 
         // Imaginea de fundal
@@ -33,75 +29,78 @@ public class CeleTreiUsi extends Application {
         backgroundImageView.setFitWidth(1000);
         backgroundImageView.setFitHeight(700);
 
-        // Imaginile celor 3 faraoni
-        Image movingImageGrisa = new Image("grisa.png");
-        ImageView movingImageViewGrisa = new ImageView(movingImageGrisa);
-        movingImageViewGrisa.setTranslateX(-600);
-        movingImageViewGrisa.setFitWidth(210);
-        movingImageViewGrisa.setFitHeight(260);
-
-        Image movingImageDima = new Image("dima.png");
-        ImageView movingImageViewDima = new ImageView(movingImageDima);
-        movingImageViewDima.setTranslateY(700);
-        movingImageViewDima.setFitWidth(300);
-        movingImageViewDima.setFitHeight(280);
-
-        Image movingImageTolea = new Image("tolea.png");
-        ImageView movingImageViewTolea = new ImageView(movingImageTolea);
-        movingImageViewTolea.setTranslateX(600);
-        movingImageViewTolea.setFitWidth(100);
-        movingImageViewTolea.setFitHeight(250);
-
-
-        // Tranzitia de deplasare a faraonilor
-        TranslateTransition transitionForGrisa = new TranslateTransition(Duration.seconds(2), movingImageViewGrisa);
-        transitionForGrisa.setToX(-150);
-        transitionForGrisa.setToY(120);
-        transitionForGrisa.play();
-
-        TranslateTransition transitionForDima = new TranslateTransition(Duration.seconds(2), movingImageViewDima);
-        transitionForDima.setToY(-10);
-        transitionForDima.setToY(120);
-        transitionForDima.play();
-
-        TranslateTransition transitionForTolea = new TranslateTransition(Duration.seconds(2), movingImageViewTolea);
-        transitionForTolea.setToX(150);
-        transitionForTolea.setToY(120);
-        transitionForTolea.play();
-
-
-        //PLAY BUTTON
-
+        // Textul de la mijloc
         Text text = new Text("Welcome to the Pyramid Escape Game!");
         text.setTranslateY(-300);
         text.getStyleClass().add("text");
 
-        Image imageButtonPlay = new Image("playBut1.png");
-        ImageView imageViewButton = new ImageView(imageButtonPlay);
-        imageViewButton.setFitWidth(150);
-        imageViewButton.setFitHeight(40);
+        // Creare HBox pentru a așeza butoanele într-un rând
+        HBox buttonBox = new HBox(70);
+        buttonBox.setAlignment(Pos.BOTTOM_CENTER); // Alinează butoanele pe centru
 
-        Button playButton = new Button();
-        playButton.getStyleClass().add("playButton");
-        playButton.setGraphic(imageViewButton);
-        StackPane root = new StackPane();
-        root.getChildren().addAll(backgroundImageView, movingImageViewGrisa, movingImageViewDima, movingImageViewTolea, text, playButton);
+        // Creare butoane
+        Button door1 = new Button();
+        Button door2 = new Button();
+        Button door3 = new Button();
 
-        playButton.setTranslateY(-200);
+        // Setare dimensiuni mai mari pentru butoane
+        door1.setPrefSize(200, 450);
+        door2.setPrefSize(200, 450);
+        door3.setPrefSize(200, 450);
 
-        playButton.setOnAction(event -> {
-//          Introducere introducere = new Introducere();
-//          introducere.start(new Stage());
-            primaryStage.close();
-            IntroducereGrisa introducere = new IntroducereGrisa();
-            introducere.start(primaryStage);
+        Image image1 = new Image("usaPiramida.jpg");
+        ImageView imageView1 = new ImageView(image1);
+        door1.setGraphic(imageView1);
+        imageView1.setFitWidth(200);
+        imageView1.setFitHeight(450);
+        door1.getStyleClass().add("door1");
+
+        Image image2 = new Image("usaPiramida.jpg");
+        ImageView imageView2 = new ImageView(image2);
+        door2.setGraphic(imageView2);
+        imageView2.setFitWidth(200);
+        imageView2.setFitHeight(450);
+        door2.getStyleClass().add("door2");
+
+        Image image3 = new Image("usaPiramida.jpg");
+        ImageView imageView3 = new ImageView(image3);
+        door3.setGraphic(imageView3);
+        imageView3.setFitWidth(200);
+        imageView3.setFitHeight(450);
+        door3.getStyleClass().add("door3");
+
+//        Image imageButtonPlay = new Image("playBut1.png");
+//        ImageView imageViewButton = new ImageView(imageButtonPlay);
+//        imageViewButton.setFitWidth(150);
+//        imageViewButton.setFitHeight(40);
+//
+//        Button playButton = new Button();
+//        playButton.getStyleClass().add("playButton");
+//        playButton.setGraphic(imageViewButton);
+
+
+
+        // Adăugare butoane la HBox
+        buttonBox.getChildren().addAll(door1, door2, door3);
+
+        // Adăugare acțiuni la butoane
+        door1.setOnAction(e -> {
+            // Adaugă acțiuni pentru primul buton
         });
+        door2.setOnAction(e -> {
+            // Adaugă acțiuni pentru al doilea buton
+        });
+        door3.setOnAction(e -> {
+            // Adaugă acțiuni pentru al treilea buton
+        });
+
+        StackPane root = new StackPane();
+        root.getChildren().addAll(backgroundImageView, text, buttonBox);
 
         Scene scene = new Scene(root, 1000, 700);
         stage.setScene(scene);
         scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         stage.setTitle("Pyramid Escape Game");
         stage.show();
-
     }
 }
