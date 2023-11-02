@@ -36,7 +36,7 @@ public class SudokuInterface extends Application {
         backgroundImageView.setFitHeight(700);
 
         stage = primaryStage;
-        primaryStage.setTitle("Pyramide Escape");
+        primaryStage.setTitle("Pyramid Escape Game");
 
         int[][] board = game.getBoard();
         for (int row = 0; row < 9; row++) {

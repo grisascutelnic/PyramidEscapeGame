@@ -10,6 +10,13 @@
     -fx-font-family: "Comic Sans MS";
 }
 
+.textG {
+    -fx-fill: #313030;
+    -fx-font-size: 36px;
+    -fx-font-family: "Times New Roman";
+    -fx-font-weight: bold;
+}
+
 .playButton {
     -fx-padding: 0;
     -fx-border-width: 0;
