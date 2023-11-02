@@ -70,7 +70,6 @@ public class Game extends Application {
 
 
         //PLAY BUTTON
-
         Text text = new Text("Welcome to the Pyramid Escape Game!");
         text.setTranslateY(-300);
         text.getStyleClass().add("text");

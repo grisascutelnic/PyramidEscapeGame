@@ -73,7 +73,6 @@ public class SudokuInterface extends Application {
         primaryStage.show();
     }
 
-
     private void onCellClick(int row, int col, Button cell) {
         int[][] board = game.getBoard();
         int currentValue = board[row][col];
