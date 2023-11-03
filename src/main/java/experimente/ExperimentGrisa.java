@@ -30,8 +30,6 @@ public class ExperimentGrisa extends Application {
         backgroundImageView.setFitHeight(700);
         backgroundImageView.setFitWidth(1000);
 
-
-
         // Creați un panou de stivă pentru a plasa elementele pe fundalul GIF
         StackPane root = new StackPane();
         root.getChildren().addAll(backgroundImageView, text);

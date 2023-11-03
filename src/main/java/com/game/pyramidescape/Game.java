@@ -83,7 +83,6 @@ public class Game extends Application {
         StackPane root = new StackPane();
         root.getChildren().addAll(backgroundImageView, movingImageViewGrisa, movingImageViewDima, movingImageViewTolea, text, playButton);
 
-
         playButton.setTranslateY(-200);
 
         playButton.setOnAction(event -> {
