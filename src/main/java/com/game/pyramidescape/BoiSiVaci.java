@@ -5,6 +5,8 @@ import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -15,9 +17,10 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class BoiSiVaci extends Application {
+    private int countPositions = 0;
     @Override
     public void start(Stage primaryStage) {
-
+        StackPane layout = new StackPane();
 
         Image backgroundImage = new Image("background5.jpg");
         ImageView backgroundImageView = new ImageView(backgroundImage);
@@ -46,6 +49,42 @@ public class BoiSiVaci extends Application {
         button1.setTranslateY(-94);
         button1.getStyleClass().add("playButton");
         button1.setGraphic(herView1);
+        button1.setOnAction(event -> {
+            ImageView heroView1 = new ImageView(her1);
+            heroView1.setFitWidth(60);
+            heroView1.setFitHeight(60);
+            switch (countPositions) {
+                case 0:
+                    heroView1.setTranslateY(-251);
+                    heroView1.setTranslateX(-114);
+                break;
+                case 1:
+                    heroView1.setTranslateY(-251);
+                    heroView1.setTranslateX(-38);
+                break;
+                case 2:
+                    heroView1.setTranslateY(-251);
+                    heroView1.setTranslateX(38);
+                break;
+                case 3:
+                    heroView1.setTranslateY(-251);
+                    heroView1.setTranslateX(114);
+                break;
+            }
+            countPositions++;
+            System.out.println(countPositions);
+            if (countPositions >= 5) {
+                for (Node child : layout.getChildren()) {
+                    if (child instanceof ImageView) {
+                        ImageView imageView = (ImageView) child;
+                        if (imageView == heroView1) {
+                            layout.getChildren().remove(imageView);
+                        }
+                    }
+                }
+            } else
+            layout.getChildren().add(heroView1);
+        });
 
         Image her2 = new Image("hero2.png");
         ImageView herView2 = new ImageView(her2);
@@ -127,7 +166,6 @@ public class BoiSiVaci extends Application {
         button9.getStyleClass().add("playButton");
         button9.setGraphic(herView9);
 
-        StackPane layout = new StackPane();
         layout.getChildren().addAll(backgroundImageView, backTabel, tabel9View, button1, button2, button3, button4,
                 button5, button6, button7, button8, button9);
 
@@ -135,5 +173,13 @@ public class BoiSiVaci extends Application {
         layout.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         primaryStage.setScene(introducereScene);
         primaryStage.show();
+    }
+
+    private boolean isObjectInScene(Scene scene, ImageView objectToFind) {
+        if (scene != null) {
+            ObservableList<Node> nodesInScene = scene.getRoot().getChildrenUnmodifiable();
+            return nodesInScene.contains(objectToFind);
+        }
+        return false;
     }
 }
