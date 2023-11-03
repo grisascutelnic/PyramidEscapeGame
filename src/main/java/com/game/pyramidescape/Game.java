@@ -29,7 +29,6 @@ public class Game extends Application {
         // Imaginea de fundal
         Image backgroundImage = new Image("background6.jpg");
         ImageView backgroundImageView = new ImageView(backgroundImage);
-
         backgroundImageView.setFitWidth(1000);
         backgroundImageView.setFitHeight(700);
 
