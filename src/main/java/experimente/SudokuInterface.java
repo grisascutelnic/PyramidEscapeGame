@@ -91,7 +91,7 @@ public class SudokuInterface extends Application {
                         if (game.isValid(row, col, num)) {
                             board[row][col] = num;
                             cell.setText(String.valueOf(num));
-                            cell.setStyle("-fx-font-size: 18; -fx-background-color: #ffcccc;"); // Culoare roșie spălată
+                            cell.setStyle("-fx-font-size: 18; -fx-background-color: #ffd11a;"); // Culoare roșie spălată
 
                             // Verifică dacă jocul este completat
                             if (isComplete()) {
@@ -99,7 +99,7 @@ public class SudokuInterface extends Application {
                             }
                         } else {
                             // Numărul introdus nu este valid
-                            showError("Eroare", "Numărul introdus nu este valid pentru această poziție.");
+                            showError("Eroare", "O alta cifra boule!");
                             // Reveniți la valoarea anterioară a celulei
                             cell.setText(currentValue == 0 ? "" : String.valueOf(currentValue));
                         }
@@ -114,7 +114,6 @@ public class SudokuInterface extends Application {
             });
         });
     }
-
 
     public boolean isComplete() {
         int[][] board = game.getBoard();
@@ -175,7 +174,7 @@ public class SudokuInterface extends Application {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Felicitări");
         alert.setHeaderText(null);
-        alert.setContentText("Jocul Sudoku a fost completat cu succes!");
+        alert.setContentText("Ai primit un fragment din cheie!");
         alert.showAndWait();
     }
 

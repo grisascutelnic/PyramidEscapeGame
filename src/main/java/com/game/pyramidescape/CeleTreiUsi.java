@@ -1,15 +1,16 @@
 package com.game.pyramidescape;
 
+import experimente.SudokuInterface;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox; // Folosește HBox în loc de VBox
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import javafx.scene.control.Button;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class CeleTreiUsi extends Application {
     public static void main(String[] args) {
@@ -69,29 +70,20 @@ public class CeleTreiUsi extends Application {
         imageView3.setFitHeight(450);
         door3.getStyleClass().add("door3");
 
-//        Image imageButtonPlay = new Image("playBut1.png");
-//        ImageView imageViewButton = new ImageView(imageButtonPlay);
-//        imageViewButton.setFitWidth(150);
-//        imageViewButton.setFitHeight(40);
-//
-//        Button playButton = new Button();
-//        playButton.getStyleClass().add("playButton");
-//        playButton.setGraphic(imageViewButton);
-
-
-
-        // Adăugare butoane la HBox
         buttonBox.getChildren().addAll(door1, door2, door3);
 
         // Adăugare acțiuni la butoane
         door1.setOnAction(e -> {
-            // Adaugă acțiuni pentru primul buton
+            SudokuInterface sudoku = new SudokuInterface();
+            sudoku.start(primaryStage);
         });
         door2.setOnAction(e -> {
-            // Adaugă acțiuni pentru al doilea buton
+            IntroducereGrisa introducere = new IntroducereGrisa();
+            introducere.start(primaryStage);
         });
         door3.setOnAction(e -> {
-            // Adaugă acțiuni pentru al treilea buton
+            IntroducereGrisa introducere = new IntroducereGrisa();
+            introducere.start(primaryStage);
         });
 
         StackPane root = new StackPane();
