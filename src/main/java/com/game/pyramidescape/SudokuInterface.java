@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public class SudokuInterface extends Application {
+public class    SudokuInterface extends Application {
     private SudokuLogique game = new SudokuLogique();
     private GridPane grid = new GridPane();
 
