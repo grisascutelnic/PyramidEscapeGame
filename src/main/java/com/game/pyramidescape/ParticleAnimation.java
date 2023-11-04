@@ -42,7 +42,7 @@ public class ParticleAnimation {
     private Circle createParticle() {
         Circle particle = new Circle(2.5);
         particle.setFill(Color.LIGHTGRAY);
-        particle.setOpacity(0.5);
+        particle.setOpacity(0.6);
         particle.setCenterX(random.nextInt(1000));
         particle.setCenterY(random.nextInt(700));
         return particle;

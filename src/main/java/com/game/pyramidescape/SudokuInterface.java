@@ -1,6 +1,7 @@
 package com.game.pyramidescape;
 
 import javafx.animation.AnimationTimer;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -8,6 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,6 +19,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,6 +99,7 @@ public class    SudokuInterface extends Application {
         // Creează un panou VBox pentru a încadra gridul și imaginea de fundal
         StackPane centerPane = new StackPane();
         centerPane.getChildren().addAll(backgroundImageView, grid);
+        /*, movingImageViewDima, hintLabel*/
 
         // Adaugă animația de particule de praf
         ParticleAnimation particleAnimation = new ParticleAnimation();
