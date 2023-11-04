@@ -1,4 +1,5 @@
 package experimente;
+import com.game.pyramidescape.SudokuLogique;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,15 +9,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class ExperimentTolea extends Application {
     private SudokuLogique game = new SudokuLogique();
     private GridPane grid = new GridPane();
     private Stage stage;
-
 
     @Override
     public void start(Stage primaryStage) {
@@ -36,7 +34,6 @@ public class ExperimentTolea extends Application {
                 Button cell = new Button();
                 cell.setMinSize(68, 68);
                 cell.setStyle("-fx-font-size: 18;");
-
                 grid.add(cell, col, row);
             }
         }

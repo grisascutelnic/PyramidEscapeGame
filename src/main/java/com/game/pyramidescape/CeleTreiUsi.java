@@ -1,6 +1,5 @@
 package com.game.pyramidescape;
 
-import experimente.SudokuInterface;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,7 +15,6 @@ public class CeleTreiUsi extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
     private Stage stage;
 
     @Override
@@ -78,8 +76,8 @@ public class CeleTreiUsi extends Application {
             sudoku.start(primaryStage);
         });
         door2.setOnAction(e -> {
-            IntroducereGrisa introducere = new IntroducereGrisa();
-            introducere.start(primaryStage);
+            BoiSiVaci boiSiVaci = new BoiSiVaci();
+            boiSiVaci.start(primaryStage);
         });
         door3.setOnAction(e -> {
             IntroducereGrisa introducere = new IntroducereGrisa();

@@ -1,6 +1,5 @@
 package com.game.pyramidescape;
 
-import experimente.SudokuInterface;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -11,7 +10,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import javafx.event.ActionEvent;
 
 public class Game extends Application {
     public static void main(String[] args) {
