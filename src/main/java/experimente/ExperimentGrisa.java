@@ -1,17 +1,14 @@
 package experimente;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class ExperimentGrisa extends Application {
-    private Text text;
-    private String textToType = "Salut! Eu ma numesc Grisa! Acesta este un joc de tip Escape Cube Game";
-    private int currentIndex = 0;
 
     public static void main(String[] args) {
         launch(args);
@@ -19,26 +16,28 @@ public class ExperimentGrisa extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Afișare text în timp real");
+        primaryStage.setTitle("Pyramid Escape Game");
 
-        text = new Text();
-        StackPane root = new StackPane(text);
+        Text text = new Text("        Game Over!\nCONGRATULATIONS!");
+        text.setTranslateY(-300);
+        text.getStyleClass().add("textG");
+        text.setTranslateY(-100);
+        text.setTranslateX(30);
 
-        Scene scene = new Scene(root, 400, 200);
+        // Încărcați imaginea GIF pentru fundal
+        Image backgroundImage = new Image("firework.gif");
+        ImageView backgroundImageView = new ImageView(backgroundImage);
+        backgroundImageView.setFitHeight(700);
+        backgroundImageView.setFitWidth(1000);
+
+        // Creați un panou de stivă pentru a plasa elementele pe fundalul GIF
+        StackPane root = new StackPane();
+        root.getChildren().addAll(backgroundImageView, text);
+
+        // Creați scena și adăugați panoul de stivă ca conținut
+        Scene scene = new Scene(root, 1000, 700);
+        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         primaryStage.setScene(scene);
-
         primaryStage.show();
-
-        // Creăm un Timeline pentru afișarea textului în timp real
-        Timeline timeline = new Timeline(
-                new KeyFrame(Duration.millis(50), event -> {
-                    if (currentIndex <= textToType.length()) {
-                        text.setText(textToType.substring(0, currentIndex));
-                        currentIndex++;
-                    }
-                })
-        );
-        timeline.setCycleCount(textToType.length() + 1);
-        timeline.play();
     }
 }

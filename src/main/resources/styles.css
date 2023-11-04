@@ -10,6 +10,24 @@
     -fx-font-family: "Comic Sans MS";
 }
 
+.text2 {
+    -fx-fill: #313030;
+    -fx-font-size: 30px;
+    -fx-font-family: "Comic Sans MS";
+}
+
+.backTabel {
+    -fx-border-color: black;
+    -fx-padding: 10px;
+}
+
+.textG {
+    -fx-fill: #313030;
+    -fx-font-size: 36px;
+    -fx-font-family: "Times New Roman";
+    -fx-font-weight: bold;
+}
+
 .playButton {
     -fx-padding: 0;
     -fx-border-width: 0;
@@ -19,4 +37,25 @@
 
 .playButton:hover {
     -fx-opacity: 60%;
+}
+
+.door1 {
+    -fx-padding: 0;
+        -fx-border-width: 0;
+        -fx-cursor: hand;
+        -fx-background-color: transparent;
+}
+
+.door2 {
+    -fx-padding: 0;
+        -fx-border-width: 0;
+        -fx-cursor: hand;
+        -fx-background-color: transparent;
+}
+
+.door3 {
+    -fx-padding: 0;
+        -fx-border-width: 0;
+        -fx-cursor: hand;
+        -fx-background-color: transparent;
 }

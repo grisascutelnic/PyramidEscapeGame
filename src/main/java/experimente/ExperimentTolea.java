@@ -1,4 +1,5 @@
 package experimente;
+import com.game.pyramidescape.SudokuLogique;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -21,12 +22,15 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
 import java.util.Random;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 public class ExperimentTolea extends Application {
     private CeasLogique game = new CeasLogique();
     private GridPane grid = new GridPane();
     private Stage stage;
-
 
     @Override
     public void start(Stage primaryStage) {
@@ -62,7 +66,6 @@ public class ExperimentTolea extends Application {
                         isColored[0] = true;
                     }
                 });
-
 
                 grid.add(cell, col, row);
             }

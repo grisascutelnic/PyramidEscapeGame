@@ -1,4 +1,5 @@
 package com.game.pyramidescape;
+import experimente.ExperimentGrisa;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
@@ -38,8 +39,8 @@ public class IntroducereTolea extends Application {
         playButton.setTranslateY(-200);
 
         playButton.setOnAction(event -> {
-            CeleTreiUsi celeTreiUsi = new CeleTreiUsi();
-            celeTreiUsi.start(primaryStage);
+            ExperimentGrisa experimentGrisa = new ExperimentGrisa();
+            experimentGrisa.start(primaryStage);
         });
 
         Image backgroundImage = new Image("backInterfata3.jpg");

@@ -5,4 +5,5 @@ module com.game.pyramidescape {
     opens com.game.pyramidescape to javafx.fxml;
     exports com.game.pyramidescape;
     exports experimente;
+    opens experimente to javafx.fxml;
 }

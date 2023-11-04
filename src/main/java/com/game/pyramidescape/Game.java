@@ -1,6 +1,5 @@
 package com.game.pyramidescape;
 
-import experimente.SudokuInterface;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -11,7 +10,6 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import javafx.event.ActionEvent;
 
 public class Game extends Application {
     public static void main(String[] args) {
@@ -29,7 +27,6 @@ public class Game extends Application {
         // Imaginea de fundal
         Image backgroundImage = new Image("background6.jpg");
         ImageView backgroundImageView = new ImageView(backgroundImage);
-
         backgroundImageView.setFitWidth(1000);
         backgroundImageView.setFitHeight(700);
 
@@ -52,7 +49,6 @@ public class Game extends Application {
         movingImageViewTolea.setFitWidth(100);
         movingImageViewTolea.setFitHeight(250);
 
-
         // Tranzitia de deplasare a faraonilor
         TranslateTransition transitionForGrisa = new TranslateTransition(Duration.seconds(2), movingImageViewGrisa);
         transitionForGrisa.setToX(-150);
@@ -70,7 +66,6 @@ public class Game extends Application {
 
 
         //PLAY BUTTON
-
         Text text = new Text("Welcome to the Pyramid Escape Game!");
         text.setTranslateY(-300);
         text.getStyleClass().add("text");
@@ -86,13 +81,12 @@ public class Game extends Application {
         StackPane root = new StackPane();
         root.getChildren().addAll(backgroundImageView, movingImageViewGrisa, movingImageViewDima, movingImageViewTolea, text, playButton);
 
-
         playButton.setTranslateY(-200);
 
         playButton.setOnAction(event -> {
 //          Introducere introducere = new Introducere();
 //          introducere.start(new Stage());
-            primaryStage.close();
+//          primaryStage.close();
             IntroducereGrisa introducere = new IntroducereGrisa();
             introducere.start(primaryStage);
         });
