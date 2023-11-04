@@ -1,5 +1,6 @@
 package com.game.pyramidescape;
 
+import experimente.ExperimentTolea;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -80,8 +81,8 @@ public class CeleTreiUsi extends Application {
             boiSiVaci.start(primaryStage);
         });
         door3.setOnAction(e -> {
-            IntroducereGrisa introducere = new IntroducereGrisa();
-            introducere.start(primaryStage);
+            ExperimentTolea ceasLogic = new ExperimentTolea();
+            ceasLogic.start(primaryStage);
         });
 
         StackPane root = new StackPane();
