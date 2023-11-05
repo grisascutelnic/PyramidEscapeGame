@@ -59,3 +59,10 @@
         -fx-cursor: hand;
         -fx-background-color: transparent;
 }
+
+.back {
+    -fx-padding: 0;
+        -fx-border-width: 0;
+        -fx-cursor: hand;
+        -fx-background-color: transparent;
+}

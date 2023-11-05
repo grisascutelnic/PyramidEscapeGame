@@ -64,12 +64,11 @@ public class Game extends Application {
         transitionForTolea.setToY(120);
         transitionForTolea.play();
 
-
-        //PLAY BUTTON
         Text text = new Text("Welcome to the Pyramid Escape Game!");
         text.setTranslateY(-300);
         text.getStyleClass().add("text");
 
+        //PLAY BUTTON
         Image imageButtonPlay = new Image("playBut1.png");
         ImageView imageViewButton = new ImageView(imageButtonPlay);
         imageViewButton.setFitWidth(150);
