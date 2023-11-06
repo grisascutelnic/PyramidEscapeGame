@@ -33,7 +33,6 @@ public class ExperimentTolea extends Application {
     private CeasLogique game = new CeasLogique();
     private GridPane grid = new GridPane();
     private Stage stage;
-    Label randomLabel = new Label();
 
     @Override
     public void start(Stage primaryStage) {
@@ -103,9 +102,9 @@ public class ExperimentTolea extends Application {
         imageViewCeas.setFitHeight(100);
         imageViewCeas.setTranslateY(-270);
 
-
-        Button convertToBinaryButton = new Button("Transformă în binar");
-        convertToBinaryButton.setOnAction(this::handleConversion); // Setează un eveniment pentru buton
+//
+//        Button convertToBinaryButton = new Button("Transformă în binar");
+//        convertToBinaryButton.setOnAction(this::handleConversion); // Setează un eveniment pentru buton
 
 
 
