@@ -1,30 +1,19 @@
 package com.game.pyramidescape;
 
-import javafx.animation.AnimationTimer;
-import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 public class    SudokuInterface extends Application {
     private SudokuLogique game = new SudokuLogique();
@@ -49,18 +38,6 @@ public class    SudokuInterface extends Application {
         stage = primaryStage;
         primaryStage.setTitle("Pyramid Escape Game");
 
-//        Image movingImageDima = new Image("dima.png");
-//        ImageView movingImageViewDima = new ImageView(movingImageDima);
-//        movingImageViewDima.setTranslateX(0);
-//        movingImageViewDima.setFitWidth(400);
-//        movingImageViewDima.setFitHeight(400);
-//
-//        // Tranzitia de deplasare a faraonilor
-//        TranslateTransition transitionForDima = new TranslateTransition(Duration.seconds(2), movingImageViewDima);
-//        transitionForDima.setToX(-430);
-//        transitionForDima.setToY(70);
-//        transitionForDima.play();
-//
 //        Label hintLabel = new Label();
 //        hintLabel.setText("Aici poți adăuga mesajul tău\n ca indiciu.");
 //        hintLabel.setStyle("-fx-font-size: 16; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\";");
@@ -74,7 +51,7 @@ public class    SudokuInterface extends Application {
                 cell.setMinSize(64, 64);
                 cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-radius: 10;");
                 cell.setOnMouseEntered(event -> {
-                    cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-radius: 10; -fx-background-color: #ffcce0;");
+                    cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-radius: 10; -fx-background-color: #ffcce0;"); //Culoarecare se schimba
                 });
                 cell.setOnMouseExited(event -> {
                     cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-radius: 10;");
@@ -98,7 +75,26 @@ public class    SudokuInterface extends Application {
 
         // Creează un panou VBox pentru a încadra gridul și imaginea de fundal
         StackPane centerPane = new StackPane();
-        centerPane.getChildren().addAll(backgroundImageView, grid);
+
+        //Back button
+        Button back = new Button();
+        back.setPrefSize(120, 50);
+        Image imageBack = new Image("BackButton.png");
+        ImageView imageView1 = new ImageView(imageBack);
+        back.setGraphic(imageView1);
+        imageView1.setFitWidth(120);
+        imageView1.setFitHeight(50);
+        back.getStyleClass().add("back");
+
+        back.setTranslateY(-300);
+        back.setTranslateX(400);
+
+        back.setOnAction(e -> {
+            CeleTreiUsi treiUsi = new CeleTreiUsi();
+            treiUsi.start(primaryStage);
+        });
+
+        centerPane.getChildren().addAll(backgroundImageView, grid, back);
         /*, movingImageViewDima, hintLabel*/
 
         // Adaugă animația de particule de praf
@@ -110,6 +106,7 @@ public class    SudokuInterface extends Application {
         borderPane.setCenter(centerPane);
 
         Scene scene = new Scene(borderPane, 1000, 700);
+        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -132,9 +129,9 @@ public class    SudokuInterface extends Application {
                         if (game.isValid(row, col, num)) {
                             board[row][col] = num;
                             cell.setText(String.valueOf(num));
-                            cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-color: #ffa31a; -fx-background-radius: 10;");
+                            cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-radius: 10;  -fx-background-color: #ffb3b3;");
                             cell.setOnMouseEntered(event -> {
-                                cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-radius: 10; -fx-background-color: #ffbf80;");
+                                cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-radius: 10; -fx-background-color: #ffb3b3;");
                             });
                             cell.setOnMouseExited(event -> {
                                 cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-radius: 10; -fx-background-color: #ffbf80;");

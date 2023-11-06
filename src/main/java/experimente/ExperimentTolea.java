@@ -49,10 +49,10 @@ public class ExperimentTolea extends Application {
 
         int[][] board = game.getBoard();
         for (int row = 0; row < 6; row++) {
-            for (int col = 0; col < 6; col++) {
+            for (int col = 0; col < 4; col++) {
                 Button cell = new Button();
                 cell.setMinSize(68, 68);
-                cell.setStyle("-fx-font-size: 18;");
+                cell.setStyle("-fx-font-size: 18; -fx-background-radius: 10;");
 
 
                 // Declarați o variabilă pentru a ține evidența stării celulei (colorată sau nu)

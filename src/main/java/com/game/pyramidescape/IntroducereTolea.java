@@ -39,8 +39,8 @@ public class IntroducereTolea extends Application {
         playButton.setTranslateY(-200);
 
         playButton.setOnAction(event -> {
-            ExperimentGrisa experimentGrisa = new ExperimentGrisa();
-            experimentGrisa.start(primaryStage);
+            CeleTreiUsi celeTreiUsi = new CeleTreiUsi();
+            celeTreiUsi.start(primaryStage);
         });
 
         Image backgroundImage = new Image("backInterfata3.jpg");
