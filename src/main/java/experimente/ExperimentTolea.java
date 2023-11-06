@@ -26,11 +26,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+
 
 public class ExperimentTolea extends Application {
     private CeasLogique game = new CeasLogique();
     private GridPane grid = new GridPane();
     private Stage stage;
+    Label randomLabel = new Label();
 
     @Override
     public void start(Stage primaryStage) {
@@ -101,6 +104,11 @@ public class ExperimentTolea extends Application {
         imageViewCeas.setTranslateY(-270);
 
 
+        Button convertToBinaryButton = new Button("Transformă în binar");
+        convertToBinaryButton.setOnAction(this::handleConversion); // Setează un eveniment pentru buton
+
+
+
 
         // Configurează alinierea gridului la centru în mod vertical și orizontal
         grid.setAlignment(Pos.CENTER);
@@ -119,9 +127,28 @@ public class ExperimentTolea extends Application {
         primaryStage.show();
     }
 
+
     public static void main(String[] args) {
         launch(args);
     }
+
+//    private void handleConversion(ActionEvent event) {
+//
+//        // Obțineți textul din etichetă și împărțiți-l în trei părți pentru conversia în binar
+//        String[] parts = randomLabel.getText().split(" : ");
+//        int part1 = Integer.parseInt(parts[0]);
+//        int part2 = Integer.parseInt(parts[1]);
+//        int part3 = Integer.parseInt(parts[2]);
+//
+//        // Transformă fiecare parte în cod binar
+//        String binaryPart1 = Integer.toBinaryString(part1);
+//        String binaryPart2 = Integer.toBinaryString(part2);
+//        String binaryPart3 = Integer.toBinaryString(part3);
+//
+//        // Afișează rezultatul în consolă (puteți face și altceva cu aceste valori, cum ar fi afișarea într-o etichetă)
+//        System.out.println("Cod binar: " + binaryPart1 + " : " + binaryPart2 + " : " + binaryPart3);
+//
+//    }
 
 
 }
