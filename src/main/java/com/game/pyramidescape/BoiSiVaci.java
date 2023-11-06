@@ -166,8 +166,25 @@ public class BoiSiVaci extends Application {
         button9.getStyleClass().add("playButton");
         button9.setGraphic(herView9);
 
+        Button back = new Button();
+        back.setPrefSize(120, 50);
+        Image imageBack = new Image("BackButton.png");
+        ImageView imageView1 = new ImageView(imageBack);
+        back.setGraphic(imageView1);
+        imageView1.setFitWidth(120);
+        imageView1.setFitHeight(50);
+        back.getStyleClass().add("back");
+
+        back.setTranslateY(-300);
+        back.setTranslateX(400);
+
+        back.setOnAction(e -> {
+            CeleTreiUsi treiUsi = new CeleTreiUsi();
+            treiUsi.start(primaryStage);
+        });
+
         layout.getChildren().addAll(backgroundImageView, backTabel, tabel9View, button1, button2, button3, button4,
-                button5, button6, button7, button8, button9);
+                button5, button6, button7, button8, button9, back);
 
         Scene introducereScene = new Scene(layout, 1000, 700);
         layout.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
