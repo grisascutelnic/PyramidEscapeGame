@@ -1,4 +1,5 @@
 package experimente;
+import com.game.pyramidescape.CeleTreiUsi;
 import com.game.pyramidescape.SudokuLogique;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -39,23 +40,52 @@ public class ExperimentTolea extends Application {
 
         Image backgroundImage = new Image("background5.jpg");
         ImageView backgroundImageView = new ImageView(backgroundImage);
-
         backgroundImageView.setFitWidth(1000);
         backgroundImageView.setFitHeight(700);
 
         stage = primaryStage;
         primaryStage.setTitle("Pyramide Escape");
 
+        Random random = new Random();
+        // Generăm 6 cifre aleatoare
+        int randomNumber1 = random.nextInt(2);
+        int randomNumber2 = random.nextInt(4);
+        int randomNumber3 = random.nextInt(5);
+        int randomNumber4 = random.nextInt(9);
+        int randomNumber5 = random.nextInt(5);
+        int randomNumber6 = random.nextInt(9);
+
+        // Convertirea în reprezentări binare
+        String binary1 = Integer.toBinaryString(randomNumber1);
+        String binary2 = Integer.toBinaryString(randomNumber2);
+        String binary3 = Integer.toBinaryString(randomNumber3);
+        String binary4 = Integer.toBinaryString(randomNumber4);
+        String binary5 = Integer.toBinaryString(randomNumber5);
+        String binary6 = Integer.toBinaryString(randomNumber6);
+
+        System.out.println("Random Number 1: " + randomNumber1 + " in binary: " + binary1);
+        System.out.println("Random Number 2: " + randomNumber2 + " in binary: " + binary2);
+        System.out.println("Random Number 3: " + randomNumber3 + " in binary: " + binary3);
+        System.out.println("Random Number 4: " + randomNumber4 + " in binary: " + binary4);
+        System.out.println("Random Number 5: " + randomNumber5 + " in binary: " + binary5);
+        System.out.println("Random Number 6: " + randomNumber6 + " in binary: " + binary6);
+
+        //cream gridul
         int[][] board = game.getBoard();
+        int[] binaryNumbers = {randomNumber1, randomNumber2, randomNumber3, randomNumber4, randomNumber5, randomNumber6};
+
         for (int row = 0; row < 6; row++) {
+            int currentNumber = binaryNumbers[row]; // Obține numărul binar corespunzător rândului
+
             for (int col = 0; col < 4; col++) {
                 Button cell = new Button();
                 cell.setMinSize(68, 68);
                 cell.setStyle("-fx-font-size: 18; -fx-background-radius: 10;");
 
-
                 // Declarați o variabilă pentru a ține evidența stării celulei (colorată sau nu)
                 final boolean[] isColored = {false};
+
+                int bitValue = (currentNumber >> (3 - col)) & 1; // Obține valoarea bitului corespunzător coloanei curente
 
                 cell.setOnAction(e -> {
                     if (isColored[0]) {
@@ -63,8 +93,13 @@ public class ExperimentTolea extends Application {
                         cell.setStyle("-fx-font-size: 18;");
                         isColored[0] = false;
                     } else {
-                        // Altfel, colorează celula
-                        cell.setStyle("-fx-background-color: burlywood; -fx-font-size: 18;");
+                        if (bitValue == 1) {
+                            // Dacă bitul este 1, colorează celula cu altă culoare
+                            cell.setStyle("-fx-background-color: burlywood; -fx-font-size: 18;");
+                        } else {
+                            // Dacă bitul este 0, colorează celula cu o altă culoare
+                            cell.setStyle("-fx-background-color: white; -fx-font-size: 18;");
+                        }
                         isColored[0] = true;
                     }
                 });
@@ -73,17 +108,25 @@ public class ExperimentTolea extends Application {
             }
         }
 
+        //Back button
+        Button back = new Button();
+        back.setPrefSize(120, 50);
+        Image imageBack = new Image("BackButton.png");
+        ImageView imageView1 = new ImageView(imageBack);
+        back.setGraphic(imageView1);
+        imageView1.setFitWidth(120);
+        imageView1.setFitHeight(50);
+        back.getStyleClass().add("back");
+
+        back.setTranslateY(-300);
+        back.setTranslateX(400);
+
+        back.setOnAction(e -> {
+            CeleTreiUsi treiUsi = new CeleTreiUsi();
+            treiUsi.start(primaryStage);
+        });
 
 
-        Random random = new Random();
-
-        // Generăm 6 cifre aleatoare
-        int randomNumber1 = random.nextInt(2);
-        int randomNumber2 = random.nextInt(4);
-        int randomNumber3 = random.nextInt(5);
-        int randomNumber4 = random.nextInt(9);
-        int randomNumber5 = random.nextInt(5);
-        int randomNumber6 = random.nextInt(9);
 
         // Creăm un Label pentru a afișa numărul generat
         Label randomLabel = new Label("" + randomNumber1 + randomNumber2 + " : " + randomNumber3 + randomNumber4 + " : " + randomNumber5 + randomNumber6);
@@ -102,11 +145,6 @@ public class ExperimentTolea extends Application {
         imageViewCeas.setFitHeight(100);
         imageViewCeas.setTranslateY(-270);
 
-//
-//        Button convertToBinaryButton = new Button("Transformă în binar");
-//        convertToBinaryButton.setOnAction(this::handleConversion); // Setează un eveniment pentru buton
-
-
 
 
         // Configurează alinierea gridului la centru în mod vertical și orizontal
@@ -114,7 +152,7 @@ public class ExperimentTolea extends Application {
 
         // Creează un panou VBox pentru a încadra gridul și imaginea de fundal
         StackPane centerPane = new StackPane();
-        centerPane.getChildren().addAll(backgroundImageView, grid , imageViewCeas , randomLabel);
+        centerPane.getChildren().addAll(backgroundImageView, grid , imageViewCeas , randomLabel , back);
 
         // Plasează panoul centrat în BorderPane
         BorderPane borderPane = new BorderPane();
@@ -130,24 +168,6 @@ public class ExperimentTolea extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-//    private void handleConversion(ActionEvent event) {
-//
-//        // Obțineți textul din etichetă și împărțiți-l în trei părți pentru conversia în binar
-//        String[] parts = randomLabel.getText().split(" : ");
-//        int part1 = Integer.parseInt(parts[0]);
-//        int part2 = Integer.parseInt(parts[1]);
-//        int part3 = Integer.parseInt(parts[2]);
-//
-//        // Transformă fiecare parte în cod binar
-//        String binaryPart1 = Integer.toBinaryString(part1);
-//        String binaryPart2 = Integer.toBinaryString(part2);
-//        String binaryPart3 = Integer.toBinaryString(part3);
-//
-//        // Afișează rezultatul în consolă (puteți face și altceva cu aceste valori, cum ar fi afișarea într-o etichetă)
-//        System.out.println("Cod binar: " + binaryPart1 + " : " + binaryPart2 + " : " + binaryPart3);
-//
-//    }
 
 
 }
