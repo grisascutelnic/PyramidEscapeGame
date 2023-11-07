@@ -188,6 +188,7 @@ public class ExperimentTolea extends Application {
 
 
         Scene scene = new Scene(borderPane, 1000, 700);
+        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }
