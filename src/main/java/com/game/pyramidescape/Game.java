@@ -66,7 +66,7 @@ public class Game extends Application {
 
         Text text = new Text("Welcome to the Pyramid Escape Game!");
         text.setTranslateY(-300);
-        text.getStyleClass().add("text");
+        text.getStyleClass().add("textGame");
 
         //PLAY BUTTON
         Image imageButtonPlay = new Image("playBut1.png");

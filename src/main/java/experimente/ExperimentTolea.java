@@ -159,8 +159,8 @@ public class ExperimentTolea extends Application {
         // Creăm un Label pentru a afișa numărul generat
         Label randomLabel = new Label("" + randomNumber1 + randomNumber2 + " : " + randomNumber3 + randomNumber4 + " : " + randomNumber5 + randomNumber6);
         randomLabel.setTranslateY(-280);
-        randomLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 50));
-        randomLabel.setTextFill(Color.FIREBRICK);
+        randomLabel.getStyleClass().add("textCeas");
+        //randomLabel.setStyle("-fx-font-size: 50 ; -fx-font-family: \"Comic Sans MS\";-fx-font-weight: bold; -fx-text-fill: firebrick;");
 
 
         // Creăm un layout VBox pentru a afișa eticheta în centru
@@ -178,7 +178,7 @@ public class ExperimentTolea extends Application {
         // Configurează alinierea gridului la centru în mod vertical și orizontal
         grid.setAlignment(Pos.CENTER);
 
-        // Creează un panou VBox pentru a încadra gridul și imaginea de fundal
+        // Creează un panou VBox pentru a încadra tot
         StackPane centerPane = new StackPane();
         centerPane.getChildren().addAll(backgroundImageView, grid , imageViewCeas , randomLabel , back);
 

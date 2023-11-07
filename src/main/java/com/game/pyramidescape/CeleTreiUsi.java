@@ -32,7 +32,7 @@ public class CeleTreiUsi extends Application {
         // Textul de la mijloc
         Text text = new Text("Welcome to the Pyramid Escape Game!");
         text.setTranslateY(-300);
-        text.getStyleClass().add("text");
+        text.getStyleClass().add("textGame");
 
         // Creare HBox pentru a așeza butoanele într-un rând
         HBox buttonBox = new HBox(70);
