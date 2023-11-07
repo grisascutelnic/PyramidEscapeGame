@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -33,6 +34,7 @@ import javafx.event.ActionEvent;
 public class ExperimentTolea extends Application {
     private CeasLogique game = new CeasLogique();
     private GridPane grid = new GridPane();
+    private GridPane grid2 = new GridPane();
     private Stage stage;
 
     @Override
@@ -70,41 +72,67 @@ public class ExperimentTolea extends Application {
         System.out.println("Random Number 5: " + randomNumber5 + " in binary: " + binary5);
         System.out.println("Random Number 6: " + randomNumber6 + " in binary: " + binary6);
 
-        //cream gridul
+        // gridul care il afisam
         int[][] board = game.getBoard();
-        int[] binaryNumbers = {randomNumber1, randomNumber2, randomNumber3, randomNumber4, randomNumber5, randomNumber6};
-
+        grid.setHgap(6); // Spațiul orizontal între celule
+        grid.setVgap(6); // Spațiul vertical între celule
         for (int row = 0; row < 6; row++) {
-            int currentNumber = binaryNumbers[row]; // Obține numărul binar corespunzător rândului
-
             for (int col = 0; col < 4; col++) {
                 Button cell = new Button();
                 cell.setMinSize(68, 68);
                 cell.setStyle("-fx-font-size: 18; -fx-background-radius: 10;");
 
-                // Declarați o variabilă pentru a ține evidența stării celulei (colorată sau nu)
-                final boolean[] isColored = {false};
-
-                int bitValue = (currentNumber >> (3 - col)) & 1; // Obține valoarea bitului corespunzător coloanei curente
-
-                cell.setOnAction(e -> {
-                    if (isColored[0]) {
-                        // Dacă celula este deja colorată, revino la culoarea inițială
-                        cell.setStyle("-fx-font-size: 18;");
-                        isColored[0] = false;
-                    } else {
-                        if (bitValue == 1) {
-                            // Dacă bitul este 1, colorează celula cu altă culoare
-                            cell.setStyle("-fx-background-color: burlywood; -fx-font-size: 18;");
-                        } else {
-                            // Dacă bitul este 0, colorează celula cu o altă culoare
-                            cell.setStyle("-fx-background-color: white; -fx-font-size: 18;");
-                        }
-                        isColored[0] = true;
+                cell.setOnMouseClicked(e -> {
+                    if (e.getButton() == MouseButton.PRIMARY) {
+                        // La clicul stânga (buton primar), colorează celula în alb
+                        cell.setStyle("-fx-background-color: white; -fx-font-size: 18;");
+                    } else if (e.getButton() == MouseButton.SECONDARY) {
+                        // La clicul dreapta (buton secundar), colorează celula în burlywood
+                        cell.setStyle("-fx-background-color: burlywood; -fx-font-size: 18;");
                     }
                 });
 
                 grid.add(cell, col, row);
+            }
+        }
+
+
+
+        //cream gridul corect care ramane in fundal
+        int[][] board2 = game.getBoard();
+        int[] binaryNumbers = {randomNumber1, randomNumber2, randomNumber3, randomNumber4, randomNumber5, randomNumber6};
+
+        for (int row2 = 0; row2 < 6; row2++) {
+            int currentNumber = binaryNumbers[row2]; // Obține numărul binar corespunzător rândului
+
+            for (int col2 = 0; col2 < 4; col2++) {
+                Button cell2 = new Button();
+                cell2.setMinSize(68, 68);
+                cell2.setStyle("-fx-font-size: 18; -fx-background-radius: 10;");
+
+                // Declarați o variabilă pentru a ține evidența stării celulei (colorată sau nu)
+                final boolean[] isColored2 = {false};
+
+                int bitValue = (currentNumber >> (3 - col2)) & 1; // Obține valoarea bitului corespunzător coloanei curente
+
+                cell2.setOnAction(e -> {
+                    if (isColored2[0]) {
+                        // Dacă celula este deja colorată, revino la culoarea inițială
+                        cell2.setStyle("-fx-font-size: 18;");
+                        isColored2[0] = false;
+                    } else {
+                        if (bitValue == 1) {
+                            // Dacă bitul este 1, colorează celula cu altă culoare
+                            cell2.setStyle("-fx-background-color: burlywood; -fx-font-size: 18;");
+                        } else {
+                            // Dacă bitul este 0, colorează celula cu o altă culoare
+                            cell2.setStyle("-fx-background-color: white; -fx-font-size: 18;");
+                        }
+                        isColored2[0] = true;
+                    }
+                });
+
+                grid2.add(cell2, col2, row2);
             }
         }
 
@@ -130,7 +158,7 @@ public class ExperimentTolea extends Application {
 
         // Creăm un Label pentru a afișa numărul generat
         Label randomLabel = new Label("" + randomNumber1 + randomNumber2 + " : " + randomNumber3 + randomNumber4 + " : " + randomNumber5 + randomNumber6);
-        randomLabel.setTranslateY(-270);
+        randomLabel.setTranslateY(-280);
         randomLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 50));
         randomLabel.setTextFill(Color.FIREBRICK);
 
@@ -143,7 +171,7 @@ public class ExperimentTolea extends Application {
 
         imageViewCeas.setFitWidth(450);
         imageViewCeas.setFitHeight(100);
-        imageViewCeas.setTranslateY(-270);
+        imageViewCeas.setTranslateY(-280);
 
 
 
