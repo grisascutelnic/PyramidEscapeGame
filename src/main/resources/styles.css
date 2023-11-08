@@ -68,8 +68,8 @@
 }
 
 .textCeas {
--fx-font-size: 100px ;
+-fx-font-size: 50px ;
 -fx-font-family: "Comic Sans MS";
 -fx-font-weight: bold;
--fx-text-fill: firebrick;
+-fx-text-fill:tomato;
 }

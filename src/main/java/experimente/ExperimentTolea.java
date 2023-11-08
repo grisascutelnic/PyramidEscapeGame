@@ -1,51 +1,42 @@
 package experimente;
+
 import com.game.pyramidescape.CeleTreiUsi;
-import com.game.pyramidescape.SudokuLogique;
+import com.game.pyramidescape.ParticleAnimation;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
-import java.util.Random;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import javafx.scene.text.Text;
-import java.util.Random;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
+
+import java.util.Objects;
+import java.util.Random;
 
 
 public class ExperimentTolea extends Application {
-    private CeasLogique game = new CeasLogique();
-    private GridPane grid = new GridPane();
-    private GridPane grid2 = new GridPane();
-    private Stage stage;
+    private final CeasLogique game = new CeasLogique();
+    private final GridPane grid = new GridPane();
+    private final GridPane grid2 = new GridPane();
+    private boolean gridBlocat = false;
 
     @Override
     public void start(Stage primaryStage) {
 
-        Image backgroundImage = new Image("background5.jpg");
+        Image backgroundImage = new Image("backInterfata1.jpg");
         ImageView backgroundImageView = new ImageView(backgroundImage);
         backgroundImageView.setFitWidth(1000);
         backgroundImageView.setFitHeight(700);
 
-        stage = primaryStage;
+
         primaryStage.setTitle("Pyramide Escape");
 
         Random random = new Random();
@@ -57,23 +48,9 @@ public class ExperimentTolea extends Application {
         int randomNumber5 = random.nextInt(5);
         int randomNumber6 = random.nextInt(9);
 
-        // Convertirea în reprezentări binare
-        String binary1 = Integer.toBinaryString(randomNumber1);
-        String binary2 = Integer.toBinaryString(randomNumber2);
-        String binary3 = Integer.toBinaryString(randomNumber3);
-        String binary4 = Integer.toBinaryString(randomNumber4);
-        String binary5 = Integer.toBinaryString(randomNumber5);
-        String binary6 = Integer.toBinaryString(randomNumber6);
-
-        System.out.println("Random Number 1: " + randomNumber1 + " in binary: " + binary1);
-        System.out.println("Random Number 2: " + randomNumber2 + " in binary: " + binary2);
-        System.out.println("Random Number 3: " + randomNumber3 + " in binary: " + binary3);
-        System.out.println("Random Number 4: " + randomNumber4 + " in binary: " + binary4);
-        System.out.println("Random Number 5: " + randomNumber5 + " in binary: " + binary5);
-        System.out.println("Random Number 6: " + randomNumber6 + " in binary: " + binary6);
 
         // gridul care il afisam
-        int[][] board = game.getBoard();
+        game.getBoard();
         grid.setHgap(6); // Spațiul orizontal între celule
         grid.setVgap(6); // Spațiul vertical între celule
         for (int row = 0; row < 6; row++) {
@@ -85,10 +62,10 @@ public class ExperimentTolea extends Application {
                 cell.setOnMouseClicked(e -> {
                     if (e.getButton() == MouseButton.PRIMARY) {
                         // La clicul stânga (buton primar), colorează celula în alb
-                        cell.setStyle("-fx-background-color: white; -fx-font-size: 18;");
+                        cell.setStyle("-fx-background-color: white; -fx-font-size: 18; -fx-background-radius: 10;");
                     } else if (e.getButton() == MouseButton.SECONDARY) {
                         // La clicul dreapta (buton secundar), colorează celula în burlywood
-                        cell.setStyle("-fx-background-color: burlywood; -fx-font-size: 18;");
+                        cell.setStyle("-fx-background-color: burlywood; -fx-font-size: 18; -fx-background-radius: 10;");
                     }
                 });
 
@@ -97,9 +74,8 @@ public class ExperimentTolea extends Application {
         }
 
 
-
         //cream gridul corect care ramane in fundal
-        int[][] board2 = game.getBoard();
+        game.getBoard();
         int[] binaryNumbers = {randomNumber1, randomNumber2, randomNumber3, randomNumber4, randomNumber5, randomNumber6};
 
         for (int row2 = 0; row2 < 6; row2++) {
@@ -110,31 +86,42 @@ public class ExperimentTolea extends Application {
                 cell2.setMinSize(68, 68);
                 cell2.setStyle("-fx-font-size: 18; -fx-background-radius: 10;");
 
-                // Declarați o variabilă pentru a ține evidența stării celulei (colorată sau nu)
-                final boolean[] isColored2 = {false};
 
                 int bitValue = (currentNumber >> (3 - col2)) & 1; // Obține valoarea bitului corespunzător coloanei curente
 
-                cell2.setOnAction(e -> {
-                    if (isColored2[0]) {
-                        // Dacă celula este deja colorată, revino la culoarea inițială
-                        cell2.setStyle("-fx-font-size: 18;");
-                        isColored2[0] = false;
-                    } else {
-                        if (bitValue == 1) {
-                            // Dacă bitul este 1, colorează celula cu altă culoare
-                            cell2.setStyle("-fx-background-color: burlywood; -fx-font-size: 18;");
-                        } else {
-                            // Dacă bitul este 0, colorează celula cu o altă culoare
-                            cell2.setStyle("-fx-background-color: white; -fx-font-size: 18;");
-                        }
-                        isColored2[0] = true;
-                    }
-                });
+                if (bitValue == 1) {
+                    // Dacă bitul este 1, colorează celula cu altă culoare
+                    cell2.setStyle("-fx-background-color: burlywood; -fx-font-size: 18; -fx-background-radius: 10;");
+                } else {
+                    // Dacă bitul este 0, colorează celula cu o altă culoare
+                    cell2.setStyle("-fx-background-color: white; -fx-font-size: 18; -fx-background-radius: 10;");
+                }
 
                 grid2.add(cell2, col2, row2);
             }
         }
+
+        Button verificareButton = new Button("Verifică ");
+        Text rezultatText = new Text();
+
+
+        verificareButton.setOnAction(e -> {
+            if (gridBlocat) {
+                return; // Nu permiteți verificarea dacă grid-ul este deja blocat
+            }
+            boolean identice = areGridsIdentice(grid, grid2);
+            if (identice) {
+                rezultatText.setText("Gridurile sunt identice.");
+                System.out.println("da");
+                gridBlocat = true;// Blocați grid-ul după verificare
+                showCongratulations();
+            } else {
+                rezultatText.setText("Gridurile nu sunt identice. Reseting grid...");
+                resetGrid(grid);
+                System.out.println("nu");
+            }
+        });
+
 
         //Back button
         Button back = new Button();
@@ -155,23 +142,14 @@ public class ExperimentTolea extends Application {
         });
 
 
-
         // Creăm un Label pentru a afișa numărul generat
         Label randomLabel = new Label("" + randomNumber1 + randomNumber2 + " : " + randomNumber3 + randomNumber4 + " : " + randomNumber5 + randomNumber6);
         randomLabel.setTranslateY(-280);
         randomLabel.getStyleClass().add("textCeas");
-        //randomLabel.setStyle("-fx-font-size: 50 ; -fx-font-family: \"Comic Sans MS\";-fx-font-weight: bold; -fx-text-fill: firebrick;");
 
 
         // Creăm un layout VBox pentru a afișa eticheta în centru
-        StackPane root = new StackPane(randomLabel);
-
-        Image backgroundceas = new Image("backgroundceas.jpg");
-        ImageView imageViewCeas = new ImageView(backgroundceas);
-
-        imageViewCeas.setFitWidth(450);
-        imageViewCeas.setFitHeight(100);
-        imageViewCeas.setTranslateY(-280);
+        new StackPane(randomLabel);
 
 
 
@@ -180,7 +158,19 @@ public class ExperimentTolea extends Application {
 
         // Creează un panou VBox pentru a încadra tot
         StackPane centerPane = new StackPane();
-        centerPane.getChildren().addAll(backgroundImageView, grid , imageViewCeas , randomLabel , back);
+        VBox bottomPane = new VBox(10); // Creăm un VBox pentru a aranja butonul de verificare și textul sub grid
+        bottomPane.setAlignment(Pos.CENTER);
+        bottomPane.getChildren().addAll(verificareButton, rezultatText);
+
+        VBox centerVBox = new VBox(10); // Creăm un VBox pentru a aranja grid-ul și bottomPane vertical
+        centerVBox.getChildren().addAll(grid, bottomPane);
+        centerVBox.setAlignment(Pos.CENTER);
+
+        centerPane.getChildren().addAll(backgroundImageView, centerVBox, randomLabel, back);
+
+
+        ParticleAnimation particleAnimation = new ParticleAnimation();
+        centerPane.getChildren().add(particleAnimation.getParticleGroup());
 
         // Plasează panoul centrat în BorderPane
         BorderPane borderPane = new BorderPane();
@@ -188,9 +178,29 @@ public class ExperimentTolea extends Application {
 
 
         Scene scene = new Scene(borderPane, 1000, 700);
-        scene.getStylesheets().add(getClass().getResource("/styles.css").toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+
+    boolean areGridsIdentice(GridPane grid1, GridPane grid2) {
+        if (grid1.getRowCount() != grid2.getRowCount() || grid1.getColumnCount() != grid2.getColumnCount()) {
+            return false; // Verifică dacă numărul de rânduri și coloane este același
+        }
+
+        for (int row = 0; row < grid1.getRowCount(); row++) {
+            for (int col = 0; col < grid1.getColumnCount(); col++) {
+                Button cell1 = (Button) grid1.getChildren().get(row * grid1.getColumnCount() + col);
+                Button cell2 = (Button) grid2.getChildren().get(row * grid2.getColumnCount() + col);
+
+                if (!cell1.getStyle().equals(cell2.getStyle())) {
+                    return false; // Verifică dacă stilul celulelor nu este același
+                }
+            }
+        }
+
+        return true; // Grid-urile sunt identice
     }
 
 
@@ -198,5 +208,43 @@ public class ExperimentTolea extends Application {
         launch(args);
     }
 
+    private void resetGrid(GridPane grid) {
+                if (!gridBlocat) {
+                    // ștergeți toate celulele din grid-ul afișat și adăugați celulele din noul grid
+                    grid.getChildren().clear();
+                    grid.getChildren().addAll(grid.getChildren());
 
+                    game.getBoard();
+                    for (int row = 0; row < 6; row++) {
+                        for (int col = 0; col < 4; col++) {
+                            Button cell = new Button();
+                            cell.setMinSize(68, 68);
+                            cell.setStyle("-fx-font-size: 18; -fx-background-radius: 10;");
+
+                            cell.setOnMouseClicked(e -> {
+                                if (e.getButton() == MouseButton.PRIMARY) {
+                                    // La clicul stânga (buton primar), colorează celula în alb
+                                    cell.setStyle("-fx-background-color: white; -fx-font-size: 18; -fx-background-radius: 10;");
+                                } else if (e.getButton() == MouseButton.SECONDARY) {
+                                    // La clicul dreapta (buton secundar), colorează celula în burlywood
+                                    cell.setStyle("-fx-background-color: burlywood; -fx-font-size: 18; -fx-background-radius: 10;");
+                                }
+                            });
+
+                            grid.add(cell, col, row);
+
+                        }
+                    }
+                }
+    }
+
+    private void showCongratulations() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Felicitări");
+        alert.setHeaderText(null);
+        alert.setContentText("Ai primit un fragment din cheie!");
+        alert.showAndWait();
+    }
 }
+
+
