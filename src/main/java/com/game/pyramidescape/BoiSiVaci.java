@@ -1,12 +1,8 @@
 package com.game.pyramidescape;
 
-import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -16,13 +12,18 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BoiSiVaci extends Application {
     private int countPositions = 0;
     @Override
     public void start(Stage primaryStage) {
         StackPane layout = new StackPane();
 
-        Image backgroundImage = new Image("background5.jpg");
+        List<ImageView> heroViews = new ArrayList<>();
+
+        Image backgroundImage = new Image("backInterfata1.jpg");
         ImageView backgroundImageView = new ImageView(backgroundImage);
         backgroundImageView.setFitWidth(1000);
         backgroundImageView.setFitHeight(700);
@@ -50,40 +51,7 @@ public class BoiSiVaci extends Application {
         button1.getStyleClass().add("playButton");
         button1.setGraphic(herView1);
         button1.setOnAction(event -> {
-            ImageView heroView1 = new ImageView(her1);
-            heroView1.setFitWidth(60);
-            heroView1.setFitHeight(60);
-            switch (countPositions) {
-                case 0:
-                    heroView1.setTranslateY(-251);
-                    heroView1.setTranslateX(-114);
-                break;
-                case 1:
-                    heroView1.setTranslateY(-251);
-                    heroView1.setTranslateX(-38);
-                break;
-                case 2:
-                    heroView1.setTranslateY(-251);
-                    heroView1.setTranslateX(38);
-                break;
-                case 3:
-                    heroView1.setTranslateY(-251);
-                    heroView1.setTranslateX(114);
-                break;
-            }
-            countPositions++;
-            System.out.println(countPositions);
-            if (countPositions >= 5) {
-                for (Node child : layout.getChildren()) {
-                    if (child instanceof ImageView) {
-                        ImageView imageView = (ImageView) child;
-                        if (imageView == heroView1) {
-                            layout.getChildren().remove(imageView);
-                        }
-                    }
-                }
-            } else
-            layout.getChildren().add(heroView1);
+            hieroglifButtonAction(her1, layout, heroViews);
         });
 
         Image her2 = new Image("hero2.png");
@@ -95,6 +63,9 @@ public class BoiSiVaci extends Application {
         button2.setTranslateY(-94);
         button2.getStyleClass().add("playButton");
         button2.setGraphic(herView2);
+        button2.setOnAction(event -> {
+            hieroglifButtonAction(her2, layout, heroViews);
+        });
 
         Image her3 = new Image("hero3.png");
         ImageView herView3 = new ImageView(her3);
@@ -105,6 +76,9 @@ public class BoiSiVaci extends Application {
         button3.setTranslateY(-94);
         button3.getStyleClass().add("playButton");
         button3.setGraphic(herView3);
+        button3.setOnAction(event -> {
+            hieroglifButtonAction(her3, layout, heroViews);
+        });
 
         Image her4 = new Image("hero4.png");
         ImageView herView4 = new ImageView(her4);
@@ -115,6 +89,9 @@ public class BoiSiVaci extends Application {
         button4.setTranslateY(1);
         button4.getStyleClass().add("playButton");
         button4.setGraphic(herView4);
+        button4.setOnAction(event -> {
+            hieroglifButtonAction(her4, layout, heroViews);
+        });
 
         Image her5 = new Image("hero5.png");
         ImageView herView5 = new ImageView(her5);
@@ -125,6 +102,9 @@ public class BoiSiVaci extends Application {
         button5.setTranslateY(1);
         button5.getStyleClass().add("playButton");
         button5.setGraphic(herView5);
+        button5.setOnAction(event -> {
+            hieroglifButtonAction(her5, layout, heroViews);
+        });
 
         Image her6 = new Image("hero6.png");
         ImageView herView6 = new ImageView(her6);
@@ -135,6 +115,9 @@ public class BoiSiVaci extends Application {
         button6.setTranslateY(1);
         button6.getStyleClass().add("playButton");
         button6.setGraphic(herView6);
+        button6.setOnAction(event -> {
+            hieroglifButtonAction(her6, layout, heroViews);
+        });
 
         Image her7 = new Image("hero7.png");
         ImageView herView7 = new ImageView(her7);
@@ -145,6 +128,9 @@ public class BoiSiVaci extends Application {
         button7.setTranslateY(96);
         button7.getStyleClass().add("playButton");
         button7.setGraphic(herView7);
+        button7.setOnAction(event -> {
+            hieroglifButtonAction(her7, layout, heroViews);
+        });
 
         Image her8 = new Image("hero8.png");
         ImageView herView8 = new ImageView(her8);
@@ -155,6 +141,9 @@ public class BoiSiVaci extends Application {
         button8.setTranslateY(95);
         button8.getStyleClass().add("playButton");
         button8.setGraphic(herView8);
+        button8.setOnAction(event -> {
+            hieroglifButtonAction(her8, layout, heroViews);
+        });
 
         Image her9 = new Image("hero9.png");
         ImageView herView9 = new ImageView(her9);
@@ -165,6 +154,9 @@ public class BoiSiVaci extends Application {
         button9.setTranslateY(94);
         button9.getStyleClass().add("playButton");
         button9.setGraphic(herView9);
+        button9.setOnAction(event -> {
+            hieroglifButtonAction(her9, layout, heroViews);
+        });
 
         Button back = new Button();
         back.setPrefSize(120, 50);
@@ -183,7 +175,9 @@ public class BoiSiVaci extends Application {
             treiUsi.start(primaryStage);
         });
 
-        layout.getChildren().addAll(backgroundImageView, backTabel, tabel9View, button1, button2, button3, button4,
+        ParticleAnimation particleAnimation = new ParticleAnimation();
+
+        layout.getChildren().addAll(backgroundImageView, particleAnimation.getParticleGroup(), backTabel, tabel9View, button1, button2, button3, button4,
                 button5, button6, button7, button8, button9, back);
 
         Scene introducereScene = new Scene(layout, 1000, 700);
@@ -192,11 +186,52 @@ public class BoiSiVaci extends Application {
         primaryStage.show();
     }
 
-    private boolean isObjectInScene(Scene scene, ImageView objectToFind) {
-        if (scene != null) {
-            ObservableList<Node> nodesInScene = scene.getRoot().getChildrenUnmodifiable();
-            return nodesInScene.contains(objectToFind);
+    private void hieroglifButtonAction(Image her, StackPane layout, List<ImageView> heroViews) {
+        ImageView heroView = new ImageView(her);
+        if (countPositions < 4 && notExistInListElement(heroViews, heroView)) {
+            heroView.setFitWidth(60);
+            heroView.setFitHeight(60);
+            switch (countPositions) {
+                case 0:
+                    heroView.setTranslateY(-251);
+                    heroView.setTranslateX(-114);
+                    break;
+                case 1:
+                    heroView.setTranslateY(-251);
+                    heroView.setTranslateX(-38);
+                    break;
+                case 2:
+                    heroView.setTranslateY(-251);
+                    heroView.setTranslateX(38);
+                    break;
+                case 3:
+                    heroView.setTranslateY(-251);
+                    heroView.setTranslateX(114);
+                    break;
+            }
+            countPositions++;
+            layout.getChildren().add(heroView);
+            heroViews.add(heroView);
+
+            if (countPositions >= 4) {
+                PauseTransition pause = new PauseTransition(Duration.seconds(0.5));
+                pause.setOnFinished(e -> {
+                    for (ImageView view : heroViews) {
+                        layout.getChildren().remove(view);
+                    }
+                    heroViews.clear();
+                    countPositions = 0;
+                });
+                pause.play();
+            }
         }
-        return false;
+    }
+
+    public boolean notExistInListElement(List<ImageView> heroView, ImageView element)
+    {
+        for (ImageView view: heroView)
+            if (view.getImage().equals(element.getImage()))
+                    return false;
+        return true;
     }
 }
