@@ -35,6 +35,24 @@ public class    SudokuInterface extends Application {
         backgroundImageView.setFitWidth(1000);
         backgroundImageView.setFitHeight(700);
 
+        Image cleopatra = new Image("Cleopatra.png");
+        ImageView cleopatraImageView = new ImageView(cleopatra);
+
+        cleopatraImageView.setFitWidth(250);
+        cleopatraImageView.setFitHeight(270);
+
+        cleopatraImageView.setTranslateX(400);
+        cleopatraImageView.setTranslateY(-100);
+
+        Image cleopatraOglindita = new Image("cleopatraOglindita.png");
+        ImageView cleopatraOglinditaImageView = new ImageView(cleopatraOglindita);
+
+        cleopatraOglinditaImageView.setFitWidth(250);
+        cleopatraOglinditaImageView.setFitHeight(270);
+
+        cleopatraOglinditaImageView.setTranslateX(-400);
+        cleopatraOglinditaImageView.setTranslateY(50);
+
         stage = primaryStage;
         primaryStage.setTitle("Pyramid Escape Game");
 
@@ -65,7 +83,6 @@ public class    SudokuInterface extends Application {
                 } else {
                     cell.setOnAction(event -> onCellClick(r, c, cell));
                 }
-
                 grid.add(cell, col, row);
             }
         }
@@ -94,8 +111,8 @@ public class    SudokuInterface extends Application {
             treiUsi.start(primaryStage);
         });
 
-        centerPane.getChildren().addAll(backgroundImageView, grid, back);
-        /*, movingImageViewDima, hintLabel*/
+        centerPane.getChildren().addAll(backgroundImageView, grid, back, cleopatraImageView, cleopatraOglinditaImageView);
+        /*hintLabel*/
 
         // Adaugă animația de particule de praf
         ParticleAnimation particleAnimation = new ParticleAnimation();

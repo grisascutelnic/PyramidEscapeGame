@@ -24,6 +24,7 @@ public class CeleTreiUsi extends Application {
     }
     private Stage stage;
     private double coeficient;
+    private boolean deschidere = true;
 
     @Override
     public void start(Stage primaryStage) {
@@ -106,17 +107,18 @@ public class CeleTreiUsi extends Application {
 
         usiBox.getChildren().addAll(imageViewUsa1, imageViewUsa2, imageViewUsa3);
         TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2.5), usiBox);
-        translateTransition.setByY(-330); // Tranzlație pe axa X cu 100 de unități
-
-//        ColorAdjust colorAdjust = new ColorAdjust();
-//        colorAdjust.setBrightness(-1); // Setează luminozitatea la -1 pentru a face elementele transparente
-//        // Aplică efectul la HBox
-//        usiBox.setEffect(colorAdjust);
-//        // Configurează un eveniment care va fi declanșat după încheierea tranzlației
-//        translateTransition.setOnFinished(event -> usiBox.setEffect(null));
+        translateTransition.setByY(-400); // Tranzlație pe axa Y
 
         // Pornește animația
         translateTransition.play();
+
+        Image backTranslare = new Image("Experiment.png");
+        ImageView backTranslareView = new ImageView(backTranslare);
+
+        backTranslareView.setFitWidth(1000);
+        backTranslareView.setFitHeight(500);
+        backTranslareView.setTranslateX(0);
+        backTranslareView.setTranslateY(-300);
 
         // Adăugare acțiuni la butoane
         door1.setOnAction(e -> {
@@ -133,7 +135,7 @@ public class CeleTreiUsi extends Application {
         });
 
         StackPane root = new StackPane();
-        root.getChildren().addAll(backgroundImageView, text, buttonBox, usiBox);
+        root.getChildren().addAll(backgroundImageView, buttonBox, usiBox, backTranslareView, text);
 
         Scene scene = new Scene(root, 1000, 700);
         stage.setScene(scene);
