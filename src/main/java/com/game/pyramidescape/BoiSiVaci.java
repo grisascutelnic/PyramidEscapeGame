@@ -292,6 +292,39 @@ public class BoiSiVaci extends Application {
                         coeficientX += 55;
                         layout.getChildren().add(view);
 
+                        Image image = view.getImage();
+                            String imageUrl = image.getUrl();
+                            //System.out.println(imageUrl);
+                            switch (imageUrl) {
+                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero1.png":
+                                    logicImageList.add(1);
+                                    break;
+                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero2.png":
+                                    logicImageList.add(2);
+                                    break;
+                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero3.png":
+                                    logicImageList.add(3);
+                                    break;
+                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero4.png":
+                                    logicImageList.add(4);
+                                    break;
+                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero5.png":
+                                    logicImageList.add(5);
+                                    break;
+                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero6.png":
+                                    logicImageList.add(6);
+                                    break;
+                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero7.png":
+                                    logicImageList.add(7);
+                                    break;
+                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero8.png":
+                                    logicImageList.add(8);
+                                    break;
+                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero9.png":
+                                    logicImageList.add(9);
+                                    break;
+                        }
+
                         if (cntOfElement == 4) {
                             int in = 0, jn = 0;
                             cntBoi = 0; cntVaci = 0;
@@ -325,38 +358,6 @@ public class BoiSiVaci extends Application {
                             layout.getChildren().add(vacaText);
                         }
 
-                        Image image = view.getImage();
-                            String imageUrl = image.getUrl();
-                            //System.out.println(imageUrl);
-                            switch (imageUrl) {
-                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero1.png":
-                                    logicImageList.add(1);
-                                    break;
-                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero2.png":
-                                    logicImageList.add(2);
-                                    break;
-                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero3.png":
-                                    logicImageList.add(3);
-                                    break;
-                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero4.png":
-                                    logicImageList.add(4);
-                                    break;
-                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero5.png":
-                                    logicImageList.add(5);
-                                    break;
-                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero6.png":
-                                    logicImageList.add(6);
-                                    break;
-                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero7.png":
-                                    logicImageList.add(7);
-                                    break;
-                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero8.png":
-                                    logicImageList.add(8);
-                                    break;
-                                case "file:/C:/Users/Grisa/IdeaProjects/PyramidEscapeGame/target/classes/hero9.png":
-                                    logicImageList.add(9);
-                                    break;
-                        }
                     }
                     coeficientY += 55;
                     heroViewsAdd.clear();
