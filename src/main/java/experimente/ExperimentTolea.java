@@ -134,7 +134,6 @@ public class ExperimentTolea extends Application {
         randomLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 50));
         randomLabel.setTextFill(Color.FIREBRICK);
 
-
         // Creăm un layout VBox pentru a afișa eticheta în centru
         StackPane root = new StackPane(randomLabel);
 
