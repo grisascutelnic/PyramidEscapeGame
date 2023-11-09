@@ -3,7 +3,9 @@ package com.game.pyramidescape;
 import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -90,6 +92,7 @@ public class BoiSiVaci extends Application {
         button1.getStyleClass().add("playButton");
         button1.setGraphic(herView1);
         button1.setOnAction(event -> {
+            if (cntIncercari < 9)
             hieroglifButtonAction(her1, layout, heroViews, logicImageList, bouView, vacaView);
         });
 
@@ -103,6 +106,7 @@ public class BoiSiVaci extends Application {
         button2.getStyleClass().add("playButton");
         button2.setGraphic(herView2);
         button2.setOnAction(event -> {
+            if (cntIncercari < 9)
             hieroglifButtonAction(her2, layout, heroViews, logicImageList, bouView, vacaView);
         });
 
@@ -116,6 +120,7 @@ public class BoiSiVaci extends Application {
         button3.getStyleClass().add("playButton");
         button3.setGraphic(herView3);
         button3.setOnAction(event -> {
+            if (cntIncercari < 9)
             hieroglifButtonAction(her3, layout, heroViews, logicImageList, bouView, vacaView);
         });
 
@@ -129,6 +134,7 @@ public class BoiSiVaci extends Application {
         button4.getStyleClass().add("playButton");
         button4.setGraphic(herView4);
         button4.setOnAction(event -> {
+            if (cntIncercari < 9)
             hieroglifButtonAction(her4, layout, heroViews, logicImageList, bouView, vacaView);
         });
 
@@ -142,6 +148,7 @@ public class BoiSiVaci extends Application {
         button5.getStyleClass().add("playButton");
         button5.setGraphic(herView5);
         button5.setOnAction(event -> {
+            if (cntIncercari < 9)
             hieroglifButtonAction(her5, layout, heroViews, logicImageList, bouView, vacaView);
         });
 
@@ -155,6 +162,7 @@ public class BoiSiVaci extends Application {
         button6.getStyleClass().add("playButton");
         button6.setGraphic(herView6);
         button6.setOnAction(event -> {
+            if (cntIncercari < 9)
             hieroglifButtonAction(her6, layout, heroViews, logicImageList, bouView, vacaView);
         });
 
@@ -168,6 +176,7 @@ public class BoiSiVaci extends Application {
         button7.getStyleClass().add("playButton");
         button7.setGraphic(herView7);
         button7.setOnAction(event -> {
+            if (cntIncercari < 9)
             hieroglifButtonAction(her7, layout, heroViews, logicImageList, bouView, vacaView);
         });
 
@@ -181,6 +190,7 @@ public class BoiSiVaci extends Application {
         button8.getStyleClass().add("playButton");
         button8.setGraphic(herView8);
         button8.setOnAction(event -> {
+            if (cntIncercari < 9)
             hieroglifButtonAction(her8, layout, heroViews, logicImageList, bouView, vacaView);
         });
 
@@ -194,6 +204,7 @@ public class BoiSiVaci extends Application {
         button9.getStyleClass().add("playButton");
         button9.setGraphic(herView9);
         button9.setOnAction(event -> {
+            if (cntIncercari < 9)
             hieroglifButtonAction(her9, layout, heroViews, logicImageList, bouView, vacaView);
         });
 
@@ -365,14 +376,14 @@ public class BoiSiVaci extends Application {
 
                     logicImageList.clear();
                     if (cntIncercari == 9 || equalList)
-                        gameOverText(layout);
+                        showCongratulations();
                 });
                 pause.play();
             }
         }
     }
 
-    public boolean notExistInListElement(List<ImageView> heroView, ImageView element)
+    private boolean notExistInListElement(List<ImageView> heroView, ImageView element)
     {
         for (ImageView view: heroView)
             if (view.getImage().equals(element.getImage()))
@@ -380,9 +391,14 @@ public class BoiSiVaci extends Application {
         return true;
     }
 
-    public void gameOverText(StackPane layout)
-    {
-        Text text = new Text("Game Over!");
-        layout.getChildren().add(text);
+    private void showCongratulations() {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Felicitări");
+            alert.setHeaderText(null);
+            alert.setContentText("Ai primit un fragment din cheie!");
+            alert.showAndWait();
+        });
     }
+
 }
