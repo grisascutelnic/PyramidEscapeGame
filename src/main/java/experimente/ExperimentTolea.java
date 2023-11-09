@@ -147,7 +147,6 @@ public class ExperimentTolea extends Application {
         randomLabel.setTranslateY(-280);
         randomLabel.getStyleClass().add("textCeas");
 
-
         // Creăm un layout VBox pentru a afișa eticheta în centru
         new StackPane(randomLabel);
 
