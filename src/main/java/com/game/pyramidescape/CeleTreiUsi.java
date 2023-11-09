@@ -39,7 +39,7 @@ public class CeleTreiUsi extends Application {
         // Textul de la mijloc
         Text text = new Text("Welcome to the Pyramid Escape Game!");
         text.setTranslateY(-300);
-        text.getStyleClass().add("text");
+        text.getStyleClass().add("textGame");
 
         HBox buttonBox = new HBox(70);
         buttonBox.setAlignment(Pos.BOTTOM_CENTER); // Alinează butoanele pe centru

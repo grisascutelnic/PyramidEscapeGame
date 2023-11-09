@@ -1,4 +1,4 @@
-.text {
+.textGame {
     -fx-fill: #ad531c;
     -fx-font-size: 24px;
     -fx-font-family: "Comic Sans MS";
@@ -65,4 +65,11 @@
         -fx-border-width: 0;
         -fx-cursor: hand;
         -fx-background-color: transparent;
+}
+
+.textCeas {
+-fx-font-size: 50px ;
+-fx-font-family: "Comic Sans MS";
+-fx-font-weight: bold;
+-fx-text-fill:tomato;
 }
