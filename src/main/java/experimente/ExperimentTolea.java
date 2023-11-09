@@ -90,10 +90,10 @@ public class ExperimentTolea extends Application {
 
                 if (bitValue == 1) {
                     // Dacă bitul este 1, colorează celula cu altă culoare
-                    cell2.setStyle("-fx-background-color: burlywood; -fx-font-size: 18; -fx-background-radius: 10;");
+                    cell2.setStyle("-fx-background-color: dimgrey; -fx-font-size: 18; -fx-background-radius: 10;");
                 } else {
                     // Dacă bitul este 0, colorează celula cu o altă culoare
-                    cell2.setStyle("-fx-background-color: darkgray; -fx-font-size: 18; -fx-background-radius: 10;");
+                    cell2.setStyle("-fx-background-color: burlywood; -fx-font-size: 18; -fx-background-radius: 10;");
                 }
 
                 grid2.add(cell2, col2, row2);
@@ -237,7 +237,7 @@ public class ExperimentTolea extends Application {
                                     cell.setStyle("-fx-background-color: burlywood; -fx-font-size: 18; -fx-background-radius: 10;");
                                 } else if (e.getButton() == MouseButton.SECONDARY) {
                                     // La clicul dreapta (buton secundar), colorează celula în burlywood
-                                    cell.setStyle("-fx-background-color: darkgray; -fx-font-size: 18; -fx-background-radius: 10;");
+                                    cell.setStyle("-fx-background-color: dimgrey; -fx-font-size: 18; -fx-background-radius: 10;");
                                 }
                             });
 
