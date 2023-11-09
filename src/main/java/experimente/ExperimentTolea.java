@@ -34,7 +34,7 @@ public class ExperimentTolea extends Application {
         Image backgroundImage = new Image("backInterfata1.jpg");
         ImageView backgroundImageView = new ImageView(backgroundImage);
         backgroundImageView.setFitWidth(1000);
-        backgroundImageView.setFitHeight(700);
+        backgroundImageView.setFitHeight(710);
 
 
         primaryStage.setTitle("Pyramide Escape");
@@ -62,17 +62,16 @@ public class ExperimentTolea extends Application {
                 cell.setOnMouseClicked(e -> {
                     if (e.getButton() == MouseButton.PRIMARY) {
                         // La clicul stânga (buton primar), colorează celula în alb
-                        cell.setStyle("-fx-background-color: white; -fx-font-size: 18; -fx-background-radius: 10;");
+                        cell.setStyle("-fx-background-color: burlywood; -fx-font-size: 18; -fx-background-radius: 10;");
                     } else if (e.getButton() == MouseButton.SECONDARY) {
                         // La clicul dreapta (buton secundar), colorează celula în burlywood
-                        cell.setStyle("-fx-background-color: burlywood; -fx-font-size: 18; -fx-background-radius: 10;");
+                        cell.setStyle("-fx-background-color: dimgrey; -fx-font-size: 18; -fx-background-radius: 10;");
                     }
                 });
 
                 grid.add(cell, col, row);
             }
         }
-
 
         //cream gridul corect care ramane in fundal
         game.getBoard();
@@ -94,7 +93,7 @@ public class ExperimentTolea extends Application {
                     cell2.setStyle("-fx-background-color: burlywood; -fx-font-size: 18; -fx-background-radius: 10;");
                 } else {
                     // Dacă bitul este 0, colorează celula cu o altă culoare
-                    cell2.setStyle("-fx-background-color: white; -fx-font-size: 18; -fx-background-radius: 10;");
+                    cell2.setStyle("-fx-background-color: darkgray; -fx-font-size: 18; -fx-background-radius: 10;");
                 }
 
                 grid2.add(cell2, col2, row2);
@@ -179,11 +178,9 @@ public class ExperimentTolea extends Application {
         centerVBox.getChildren().addAll(grid, bottomPane);
         centerVBox.setAlignment(Pos.CENTER);
 
-        centerPane.getChildren().addAll(backgroundImageView, centerVBox, pergamentImageView, randomLabel, back);
-
-
         ParticleAnimation particleAnimation = new ParticleAnimation();
-        centerPane.getChildren().add(particleAnimation.getParticleGroup());
+        centerPane.getChildren().addAll(backgroundImageView,particleAnimation.getParticleGroup(), centerVBox, pergamentImageView, randomLabel, back);
+
 
         // Plasează panoul centrat în BorderPane
         BorderPane borderPane = new BorderPane();
@@ -237,10 +234,10 @@ public class ExperimentTolea extends Application {
                             cell.setOnMouseClicked(e -> {
                                 if (e.getButton() == MouseButton.PRIMARY) {
                                     // La clicul stânga (buton primar), colorează celula în alb
-                                    cell.setStyle("-fx-background-color: white; -fx-font-size: 18; -fx-background-radius: 10;");
+                                    cell.setStyle("-fx-background-color: burlywood; -fx-font-size: 18; -fx-background-radius: 10;");
                                 } else if (e.getButton() == MouseButton.SECONDARY) {
                                     // La clicul dreapta (buton secundar), colorează celula în burlywood
-                                    cell.setStyle("-fx-background-color: burlywood; -fx-font-size: 18; -fx-background-radius: 10;");
+                                    cell.setStyle("-fx-background-color: darkgray; -fx-font-size: 18; -fx-background-radius: 10;");
                                 }
                             });
 
