@@ -101,8 +101,12 @@ public class ExperimentTolea extends Application {
             }
         }
 
-        Button verificareButton = new Button("Verifică ");
+        Button verificareButton = new Button("Verifică");
+        verificareButton.setStyle("fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\";");
         Text rezultatText = new Text();
+        verificareButton.setTranslateY(55);
+        rezultatText.setTranslateY(55);
+        rezultatText.setStyle("fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\";");
 
 
         verificareButton.setOnAction(e -> {
@@ -147,6 +151,13 @@ public class ExperimentTolea extends Application {
         randomLabel.setTranslateY(-280);
         randomLabel.getStyleClass().add("textCeas");
 
+        Image pergament = new Image("pergament.png");
+        ImageView pergamentImageView = new ImageView(pergament);
+        pergamentImageView.setFitWidth(420);
+        pergamentImageView.setFitHeight(130);
+        pergamentImageView.setTranslateY(-280);
+        pergamentImageView.setTranslateX(0);
+
 
         // Creăm un layout VBox pentru a afișa eticheta în centru
         new StackPane(randomLabel);
@@ -155,6 +166,8 @@ public class ExperimentTolea extends Application {
 
         // Configurează alinierea gridului la centru în mod vertical și orizontal
         grid.setAlignment(Pos.CENTER);
+        grid.setTranslateY(45);
+
 
         // Creează un panou VBox pentru a încadra tot
         StackPane centerPane = new StackPane();
@@ -166,7 +179,7 @@ public class ExperimentTolea extends Application {
         centerVBox.getChildren().addAll(grid, bottomPane);
         centerVBox.setAlignment(Pos.CENTER);
 
-        centerPane.getChildren().addAll(backgroundImageView, centerVBox, randomLabel, back);
+        centerPane.getChildren().addAll(backgroundImageView, centerVBox, pergamentImageView, randomLabel, back);
 
 
         ParticleAnimation particleAnimation = new ParticleAnimation();
