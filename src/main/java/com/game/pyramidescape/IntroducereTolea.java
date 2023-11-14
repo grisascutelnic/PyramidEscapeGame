@@ -1,5 +1,4 @@
 package com.game.pyramidescape;
-import experimente.ExperimentGrisa;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;

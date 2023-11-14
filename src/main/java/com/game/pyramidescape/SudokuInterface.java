@@ -51,7 +51,7 @@ public class    SudokuInterface extends Application {
         cleopatraOglinditaImageView.setFitHeight(270);
 
         cleopatraOglinditaImageView.setTranslateX(-400);
-        cleopatraOglinditaImageView.setTranslateY(50);
+        cleopatraOglinditaImageView.setTranslateY(120);
 
         stage = primaryStage;
         primaryStage.setTitle("Pyramid Escape Game");

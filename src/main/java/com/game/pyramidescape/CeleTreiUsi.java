@@ -31,9 +31,8 @@ public class CeleTreiUsi extends Application {
         stage = primaryStage;
 
         // Imaginea de fundal
-        Image backgroundImage = new Image("background1.jpg");
+        Image backgroundImage = new Image("background7.jpg");
         ImageView backgroundImageView = new ImageView(backgroundImage);
-
         backgroundImageView.setFitWidth(1000);
         backgroundImageView.setFitHeight(700);
 
@@ -112,13 +111,13 @@ public class CeleTreiUsi extends Application {
         // Pornește animația
         translateTransition.play();
 
-        Image backTranslare = new Image("Experiment.png");
-        ImageView backTranslareView = new ImageView(backTranslare);
-
-        backTranslareView.setFitWidth(1000);
-        backTranslareView.setFitHeight(500);
-        backTranslareView.setTranslateX(0);
-        backTranslareView.setTranslateY(-300);
+//        Image backTranslare = new Image("ExperRew.png");
+//        ImageView backTranslareView = new ImageView(backTranslare);
+//
+//        backTranslareView.setFitWidth(1000);
+//        backTranslareView.setFitHeight(500);
+//        backTranslareView.setTranslateX(0);
+//        backTranslareView.setTranslateY(-300);
 
         // Adăugare acțiuni la butoane
         door1.setOnAction(e -> {
@@ -135,7 +134,7 @@ public class CeleTreiUsi extends Application {
         });
 
         StackPane root = new StackPane();
-        root.getChildren().addAll(backgroundImageView, buttonBox, usiBox, backTranslareView, text);
+        root.getChildren().addAll(backgroundImageView, buttonBox, usiBox, text);
 
         Scene scene = new Scene(root, 1000, 700);
         stage.setScene(scene);
