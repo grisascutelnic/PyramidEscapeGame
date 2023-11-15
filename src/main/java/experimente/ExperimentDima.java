@@ -27,7 +27,7 @@ public class ExperimentDima extends Application {
         imgView1.setLayoutX(125); // Deplasează a doua imagine spre dreapta
         imgView1.setLayoutY(50);
         imgView2.setLayoutX(120); // Deplasează a doua imagine spre dreapta
-        imgView2.setLayoutY(45);
+        imgView2.setLayoutY(44);
         imgView3.setLayoutX(125); // Deplasează a treia imagine și mai spre dreapta
         imgView3.setLayoutY(51);
 
