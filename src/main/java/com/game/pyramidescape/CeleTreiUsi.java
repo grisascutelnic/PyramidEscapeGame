@@ -1,6 +1,7 @@
 package com.game.pyramidescape;
 
 import experimente.ExperimentTolea;
+import javafx.animation.PauseTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -35,6 +36,12 @@ public class CeleTreiUsi extends Application {
         ImageView backgroundImageView = new ImageView(backgroundImage);
         backgroundImageView.setFitWidth(1000);
         backgroundImageView.setFitHeight(700);
+
+        //Imagine sub care dispar usile care se ridica
+        Image TransparentImage = new Image("FundalTransparent.png");
+        ImageView TransparentImageView = new ImageView(TransparentImage);
+        TransparentImageView.setFitWidth(1000);
+        TransparentImageView.setFitHeight(700);
 
         // Textul de la mijloc
         Text text = new Text("Welcome to the Pyramid Escape Game!");
@@ -81,9 +88,9 @@ public class CeleTreiUsi extends Application {
 
         buttonBox.getChildren().addAll(door1, door2, door3);
 
-        HBox usiBox = new HBox(11);
+        HBox usiBox = new HBox(-200);
         usiBox.setAlignment(Pos.BOTTOM_CENTER);
-        usiBox.setPadding(new Insets(0, 0, -18, 0));
+        usiBox.setPadding(new Insets(0, 0, -160, 0));
 
         Image usa1 = new Image("deschidereUsa.png");
         Image usa2 = new Image("deschidereUsa.png");
@@ -93,8 +100,8 @@ public class CeleTreiUsi extends Application {
         ImageView imageViewUsa2 = new ImageView(usa2);
         ImageView imageViewUsa3 = new ImageView(usa3);
 
-        coeficient = 2.4;
-        // Setăm mărimea dorită pentru fiecare imagine modificand coeficintul
+        double coeficient = 4.5;
+    // Setăm mărimea dorită pentru fiecare imagine modificand coeficientul
         imageViewUsa1.setFitWidth(100 * coeficient);
         imageViewUsa1.setFitHeight(200 * coeficient);
 
@@ -104,37 +111,52 @@ public class CeleTreiUsi extends Application {
         imageViewUsa3.setFitWidth(100 * coeficient);
         imageViewUsa3.setFitHeight(200 * coeficient);
 
+    // Adăugăm fiecare ImageView în usiBox
         usiBox.getChildren().addAll(imageViewUsa1, imageViewUsa2, imageViewUsa3);
-        TranslateTransition translateTransition = new TranslateTransition(Duration.seconds(2.5), usiBox);
-        translateTransition.setByY(-400); // Tranzlație pe axa Y
 
-        // Pornește animația
-        translateTransition.play();
+    // Creăm și configurăm TranslateTransition pentru fiecare ImageView
+        TranslateTransition transitionUsa1 = new TranslateTransition(Duration.seconds(2.5), imageViewUsa1);
+        transitionUsa1.setByY(-400); // Tranzlație pe axa Y pentru usa1
 
-//        Image backTranslare = new Image("ExperRew.png");
-//        ImageView backTranslareView = new ImageView(backTranslare);
-//
-//        backTranslareView.setFitWidth(1000);
-//        backTranslareView.setFitHeight(500);
-//        backTranslareView.setTranslateX(0);
-//        backTranslareView.setTranslateY(-300);
+        TranslateTransition transitionUsa2 = new TranslateTransition(Duration.seconds(2.5), imageViewUsa2);
+        transitionUsa2.setByY(-400); // Tranzlație pe axa Y pentru usa2
 
-        // Adăugare acțiuni la butoane
-        door1.setOnAction(e -> {
-            SudokuInterface sudoku = new SudokuInterface();
-            sudoku.start(primaryStage);
+        TranslateTransition transitionUsa3 = new TranslateTransition(Duration.seconds(2.5), imageViewUsa3);
+        transitionUsa3.setByY(-400); // Tranzlație pe axa Y pentru usa3
+
+        //Actiunile usilor
+        imageViewUsa1.setOnMouseClicked(event -> {
+            transitionUsa1.play();
+            PauseTransition pause = new PauseTransition(Duration.seconds(2.6));
+            pause.setOnFinished(e -> {
+                SudokuInterface sudoku = new SudokuInterface();
+                sudoku.start(primaryStage);
+            });
+            pause.play();
         });
-        door2.setOnAction(e -> {
-            BoiSiVaci boiSiVaci = new BoiSiVaci();
-            boiSiVaci.start(primaryStage);
+
+        imageViewUsa2.setOnMouseClicked(event -> {
+            transitionUsa2.play();
+            PauseTransition pause = new PauseTransition(Duration.seconds(2.6));
+            pause.setOnFinished(e -> {
+                BoiSiVaci boiSiVaci = new BoiSiVaci();
+                boiSiVaci.start(primaryStage);
+            });
+            pause.play();
         });
-        door3.setOnAction(e -> {
-            ExperimentTolea ceasLogic = new ExperimentTolea();
-            ceasLogic.start(primaryStage);
+
+        imageViewUsa3.setOnMouseClicked(event -> {
+            transitionUsa3.play();
+            PauseTransition pause = new PauseTransition(Duration.seconds(2.6));
+            pause.setOnFinished(e -> {
+                ExperimentTolea ceasLogic = new ExperimentTolea();
+                ceasLogic.start(primaryStage);
+            });
+            pause.play();
         });
 
         StackPane root = new StackPane();
-        root.getChildren().addAll(backgroundImageView, buttonBox, usiBox, text);
+        root.getChildren().addAll(backgroundImageView, buttonBox, usiBox, TransparentImageView, text);
 
         Scene scene = new Scene(root, 1000, 700);
         stage.setScene(scene);
