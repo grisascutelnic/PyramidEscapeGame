@@ -243,6 +243,8 @@ public class ExperimentTolea extends Application {
 
                             grid.add(cell, col, row);
 
+
+
                         }
                     }
                 }
