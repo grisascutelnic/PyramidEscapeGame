@@ -12,10 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
 public class Game extends Application {
+
     public static void main(String[] args) {
         launch(args);
     }
-
     private Stage stage;
     @Override
     public void start(Stage primaryStage) {

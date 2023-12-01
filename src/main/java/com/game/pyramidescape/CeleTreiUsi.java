@@ -25,7 +25,6 @@ public class CeleTreiUsi extends Application {
     }
     private Stage stage;
     private double coeficient;
-    private boolean deschidere = true;
 
     @Override
     public void start(Stage primaryStage) {
@@ -125,6 +124,7 @@ public class CeleTreiUsi extends Application {
         transitionUsa3.setByY(-400); // Tranzlație pe axa Y pentru usa3
 
         //Actiunile usilor
+
         imageViewUsa1.setOnMouseClicked(event -> {
             transitionUsa1.play();
             PauseTransition pause = new PauseTransition(Duration.seconds(2.6));

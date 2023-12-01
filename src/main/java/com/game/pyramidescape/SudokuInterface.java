@@ -3,10 +3,9 @@ package com.game.pyramidescape;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -56,12 +55,6 @@ public class    SudokuInterface extends Application {
         stage = primaryStage;
         primaryStage.setTitle("Pyramid Escape Game");
 
-//        Label hintLabel = new Label();
-//        hintLabel.setText("Aici poți adăuga mesajul tău\n ca indiciu.");
-//        hintLabel.setStyle("-fx-font-size: 16; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\";");
-//        hintLabel.setTranslateX(-300);
-//        hintLabel.setTranslateY(-100);
-
         int[][] board = game.getBoard();
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
@@ -81,7 +74,7 @@ public class    SudokuInterface extends Application {
                 if (board[row][col] != 0) {
                     cell.setDisable(true); // Blochează celulele cu valori preexistente
                 } else {
-                    cell.setOnAction(event -> onCellClick(r, c, cell));
+                    cell.setOnAction(event -> onCellClick(r, c, cell, primaryStage));
                 }
                 grid.add(cell, col, row);
             }
@@ -128,16 +121,29 @@ public class    SudokuInterface extends Application {
         primaryStage.show();
     }
 
-    private void onCellClick(int row, int col, Button cell) {
+    private void onCellClick(int row, int col, Button cell, Stage primaryStage) {
+        stage = primaryStage;
         int[][] board = game.getBoard();
         int currentValue = board[row][col];
 
         Platform.runLater(() -> {
             TextInputDialog dialog = new TextInputDialog(currentValue == 0 ? "" : String.valueOf(currentValue));
-            dialog.setTitle("Completează celula");
+            dialog.setTitle("Pyramide Escape Game");
             dialog.setHeaderText("Introdu un număr de la 1 la 9:");
-            dialog.setContentText("Număr:");
 
+            // Încercăm să ascundem butonul de ajutor, dacă există
+            final ButtonType helpButtonType = new ButtonType("?", ButtonBar.ButtonData.HELP_2);
+            final Node helpButton = dialog.getDialogPane().lookupButton(helpButtonType);
+            if (helpButton != null) {
+                helpButton.setVisible(false);
+                helpButton.managedProperty().bind(helpButton.visibleProperty());
+            }
+
+            // Adăugați stiluri personalizate pentru dialog, dacă este necesar
+            dialog.getDialogPane().setStyle("-fx-font-size: 16px;"); // Exemplu de modificare a stilului pane-ului dialogului
+            dialog.getDialogPane().lookup(".content.label").setStyle("-fx-font-size: 14px;"); // Exemplu de modificare a stilului textului din dialog
+
+            // Restul codului pentru gestionarea răspunsului utilizatorului
             Optional<String> result = dialog.showAndWait();
             result.ifPresent(numStr -> {
                 try {
@@ -146,17 +152,18 @@ public class    SudokuInterface extends Application {
                         if (game.isValid(row, col, num)) {
                             board[row][col] = num;
                             cell.setText(String.valueOf(num));
-                            cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-radius: 10;  -fx-background-color: #ffb3b3;");
+                            cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-radius: 16;  -fx-background-color: #ffb3b3;");
                             cell.setOnMouseEntered(event -> {
-                                cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-radius: 10; -fx-background-color: #ffb3b3;");
+                                cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-radius: 16; -fx-background-color: #ffb3b3;");
                             });
                             cell.setOnMouseExited(event -> {
-                                cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-radius: 10; -fx-background-color: #ffbf80;");
+                                cell.setStyle("-fx-font-size: 20; -fx-font-weight: bold; -fx-font-family: \"Comic Sans MS\"; -fx-background-radius: 16; -fx-background-color: #ffbf80;");
                             });
 
                             // Verifică dacă jocul este completat
                             if (isComplete()) {
-                                showCongratulations(); // Afișează felicitarea
+                                FelicitareCheie felicitare = new FelicitareCheie();
+                                felicitare.start(primaryStage); // Afișează felicitarea
                             }
                         } else {
                             // Numărul introdus nu este valid

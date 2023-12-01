@@ -10,6 +10,12 @@
     -fx-font-family: "Comic Sans MS";
 }
 
+.textFelicitare {
+    -fx-fill: #ad531c;
+    -fx-font-size: 28px;
+    -fx-font-family: "Comic Sans MS";
+}
+
 .text2 {
     -fx-fill: #313030;
     -fx-font-size: 30px;
@@ -73,3 +79,20 @@
 -fx-font-weight: bold;
 -fx-text-fill:black;
 }
+
+.text-field {
+    -fx-font-size: 18pt;
+    -fx-font-family: 'Arial';
+}
+
+.button {
+    -fx-font-family: 'Arial';
+    -fx-font-weight: bold;
+}
+
+.dialog-pane {
+    -fx-background-color: #bebebe;
+    -fx-border-color: #000000;
+    -fx-border-width: 2px;
+}
+
