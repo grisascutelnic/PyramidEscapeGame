@@ -16,14 +16,17 @@ import javafx.util.Duration;
 
 public class IntroducereDima extends Application {
 
-    private String textGrisa = "Salut! Eu ma numesc Grigore Scutelnic si\n" +
-            "azi va voi prezenta micul nostru joculet de tip\n" +
-            "Pyramid Escape Game. Bonne chance!";
+    private String textGrisa = "Sudoku Mistic: Pe măsură ce exploratorul avansează, el găsește puzzle-uri \n" +
+            "de sudoku misterioase care dezvăluie indicii cruciale pentru a debloca uși secrete \n" +
+            "Jocul Boi și Vaci pe Hieroglife Egiptene: Jucătorii trebuie să rezolve un joc de tip\n" +
+            "boi și vaci folosind hieroglife egiptene în loc de cifre sau litere \n" +
+            "Ceasul binar: O altă provocare unică constă în a transforma un ceas simplu intr-un\n" +
+            "ceas binar, oferind jucătorilor un indiciu crucial despre următorul pas în evadare ";
     private Text textt = new Text();
     private int index;
     @Override
     public void start(Stage primaryStage) {
-        textt.setTranslateY(-150);
+        textt.setTranslateY(-170);
         textt.getStyleClass().add("textt");
 
         Image imageButtonPlay = new Image("playBut1.png");
@@ -35,7 +38,7 @@ public class IntroducereDima extends Application {
         playButton.getStyleClass().add("playButton");
         playButton.setGraphic(imageViewButton);
 
-        playButton.setTranslateY(-200);
+        playButton.setTranslateY(-300);
 
         playButton.setOnAction(event -> {
             IntroducereTolea introducereTolea = new IntroducereTolea();

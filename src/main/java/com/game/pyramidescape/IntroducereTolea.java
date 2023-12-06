@@ -16,9 +16,10 @@ import javafx.util.Duration;
 
 public class IntroducereTolea extends Application {
 
-    private String textGrisa = "Salut! Eu ma numesc Grigore Scutelnic si\n" +
-            "azi va voi prezenta micul nostru joculet de tip\n" +
-            "Pyramid Escape Game. Bonne chance!";
+    private String textGrisa = "În Pyramid Escape Game, jucătorii trebuie să fie cu un pas înaintea capcanelor și să \n" +
+            "dezlege enigme străvechi. Cu grafică impresionantă și o poveste captivantă, \n" +
+            "jocul aduce la viață aventura exploratorului și îi provoacă pe jucători să își \n" +
+            "pună la încercare inteligența și spiritul de echipă pentru a scăpa din această piramidă \n fascinantă.";
     private Text textt = new Text();
     private int index;
     @Override
@@ -35,7 +36,7 @@ public class IntroducereTolea extends Application {
         playButton.getStyleClass().add("playButton");
         playButton.setGraphic(imageViewButton);
 
-        playButton.setTranslateY(-200);
+        playButton.setTranslateY(-300);
 
         playButton.setOnAction(event -> {
             CeleTreiUsi celeTreiUsi = new CeleTreiUsi();

@@ -61,6 +61,7 @@ public class SudokuLogique {
     public void generatePuzzle() {
         solve();
         Random rand = new Random();
+
         int numToRemove = 35; // Numărul de celule de sudoku de eliminat
         while (numToRemove > 0) {
             int row = rand.nextInt(9);

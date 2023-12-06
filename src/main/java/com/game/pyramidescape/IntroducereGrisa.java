@@ -16,9 +16,10 @@ import javafx.util.Duration;
 
 public class IntroducereGrisa extends Application {
 
-    private String textGrisa = "Salut! Eu ma numesc Grigore Scutelnic si\n" +
-            "azi va voi prezenta micul nostru joculet de tip\n" +
-            "Pyramid Escape Game. Bonne chance!";
+    private String textGrisa = "             Un explorator curajos se trezește în interiorul Piramidei \n" +
+            "Luminii, o structură antică din Egiptul antic, plină de mistere și comori. Jucătorii \n" +
+            "         preiau rolul acestui explorator și au o singură misiune: să dezlege secretele \n" +
+            "                          piramidei și să evadeze înainte ca timpul să se scurgă.";
     private Text textt = new Text();
     private int index;
     @Override
@@ -35,7 +36,7 @@ public class IntroducereGrisa extends Application {
         playButton.getStyleClass().add("playButton");
         playButton.setGraphic(imageViewButton);
 
-        playButton.setTranslateY(-200);
+        playButton.setTranslateY(-300);
 
         playButton.setOnAction(event -> {
             IntroducereDima introducereDima = new IntroducereDima();
