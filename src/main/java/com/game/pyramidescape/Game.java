@@ -21,7 +21,6 @@ public class Game extends Application {
     public void start(Stage primaryStage) {
 
         //INTERFATA
-
         stage = primaryStage;
 
         // Imaginea de fundal
