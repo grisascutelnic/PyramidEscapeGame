@@ -61,7 +61,7 @@ public class SudokuLogique {
     public void generatePuzzle() {
         solve();
         Random rand = new Random();
-        int numToRemove = 57; // Numărul de celule de sudoku de eliminat
+        int numToRemove = 35; // Numărul de celule de sudoku de eliminat
         while (numToRemove > 0) {
             int row = rand.nextInt(9);
             int col = rand.nextInt(9);
@@ -71,4 +71,55 @@ public class SudokuLogique {
             }
         }
     }
+    // Implementarea Backtraking
+    public boolean solveSudoku(int[][] board) {
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                // Caută o celulă necompletată
+                if (board[row][col] == 0) {
+                    for (int number = 1; number <= 9; number++) {
+                        // Verifică dacă numărul poate fi plasat
+                        if (isValid(board, row, col, number)) {
+                            board[row][col] = number;
+
+                            if (solveSudoku(board)) {
+                                return true;
+                            } else {
+                                board[row][col] = 0;
+                            }
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    private boolean isValid(int[][] board, int row, int col, int number) {
+        // Verifică rândul
+        for (int i = 0; i < 9; i++) {
+            if (board[row][i] == number) {
+                return false;
+            }
+        }
+        // Verifică coloana
+        for (int i = 0; i < 9; i++) {
+            if (board[i][col] == number) {
+                return false;
+            }
+        }
+        // Verifică blocul 3x3
+        int startRow = row - row % 3;
+        int startCol = col - col % 3;
+
+        for (int i = startRow; i < startRow + 3; i++) {
+            for (int j = startCol; j < startCol + 3; j++) {
+                if (board[i][j] == number) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }
