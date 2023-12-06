@@ -402,4 +402,67 @@ public class BoiSiVaci extends Application {
         });
     }
 
+    private List<Integer> solveBoiSiVaci(List<Integer> secretList, List<Integer> availableSymbols, int maxTries) {
+        List<Integer> guess = new ArrayList<>();
+        Random rand = new Random();
+
+        for (int tryCount = 0; tryCount < maxTries; tryCount++) {
+            guess.clear();
+
+            while (guess.size() < 4) {
+                int symbol = availableSymbols.get(rand.nextInt(availableSymbols.size()));
+                if (!guess.contains(symbol)) {
+                    guess.add(symbol);
+                }
+            }
+
+            int bulls = countBulls(secretList, guess);
+            int cows = countCows(secretList, guess);
+
+            if (bulls == 4) {
+                return guess;
+            } else {
+                updateAvailableSymbols(availableSymbols, guess, bulls, cows);
+            }
+        }
+        return null;
+    }
+
+    private int countBulls(List<Integer> secretList, List<Integer> guess) {
+        int bulls = 0;
+        for (int i = 0; i < secretList.size(); i++) {
+            if (secretList.get(i).equals(guess.get(i))) {
+                bulls++;
+            }
+        }
+        return bulls;
+    }
+
+    private int countCows(List<Integer> secretList, List<Integer> guess) {
+        int cows = 0;
+        for (Integer symbol : guess) {
+            if (secretList.contains(symbol) && !secretList.get(guess.indexOf(symbol)).equals(symbol)) {
+                cows++;
+            }
+        }
+        return cows;
+    }
+
+    private void updateAvailableSymbols(List<Integer> availableSymbols, List<Integer> guess, int bulls, int cows) {
+        List<Integer> symbolsToRemove = new ArrayList<>(guess);
+        for (int i = 0; i < guess.size(); i++) {
+            if (guess.get(i).equals(logicList.get(i))) {
+                symbolsToRemove.remove(guess.get(i));
+            }
+        }
+        for (Integer symbol : guess) {
+            if (logicList.contains(symbol) && !logicList.get(guess.indexOf(symbol)).equals(symbol)) {
+                symbolsToRemove.remove(symbol);
+            }
+        }
+        availableSymbols.removeAll(symbolsToRemove);
+    }
+
+
+
 }
