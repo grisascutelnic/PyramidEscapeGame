@@ -61,7 +61,7 @@ public class IntroducereGrisa extends Application {
         PauseTransition pause = new PauseTransition(Duration.seconds(2.5));
         pause.setOnFinished(event -> {
             Timeline timeline = new Timeline(
-                    new KeyFrame(Duration.millis(50), e -> {
+                    new KeyFrame(Duration.millis(20), e -> {
                         if (index <= textGrisa.length()) {
                             textt.setText(textGrisa.substring(0, index));
                             index++;
